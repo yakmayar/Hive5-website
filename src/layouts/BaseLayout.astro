@@ -1,0 +1,87 @@
+---
+const { title, description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title} | Hive Five Apiary</title>
+  <meta name="description" content={description}>
+  <link rel="stylesheet" href="/src/styles/global.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body class="bg-amber-50 text-gray-900">
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="/" class="flex items-center space-x-2">
+          <span class="text-2xl">🐝</span>
+          <span class="text-xl font-bold text-honey-700">Hive Five Apiary</span>
+        </a>
+        <div class="hidden md:flex space-x-8">
+          <a href="/" class="text-gray-700 hover:text-honey-600 transition">Home</a>
+          <a href="/about" class="text-gray-700 hover:text-honey-600 transition">About</a>
+          <a href="/bees" class="text-gray-700 hover:text-honey-600 transition">Our Bees</a>
+          <a href="/products" class="text-gray-700 hover:text-honey-600 transition">Products</a>
+          <a href="/contact" class="text-gray-700 hover:text-honey-600 transition">Contact</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden text-gray-700" aria-label="Toggle menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+      <div class="px-4 py-3 space-y-3">
+        <a href="/" class="block text-gray-700 hover:text-honey-600">Home</a>
+        <a href="/about" class="block text-gray-700 hover:text-honey-600">About</a>
+        <a href="/bees" class="block text-gray-700 hover:text-honey-600">Our Bees</a>
+        <a href="/products" class="block text-gray-700 hover:text-honey-600">Products</a>
+        <a href="/contact" class="block text-gray-700 hover:text-honey-600">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="bg-gray-900 text-white mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4 text-honey-400">Hive Five Apiary</h3>
+          <p class="text-gray-400">Sustainable beekeeping and pure, local honey.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="/about" class="hover:text-honey-400 transition">About Us</a></li>
+            <li><a href="/bees" class="hover:text-honey-400 transition">Our Bees</a></li>
+            <li><a href="/products" class="hover:text-honey-400 transition">Products</a></li>
+            <li><a href="/contact" class="hover:text-honey-400 transition">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Connect</h4>
+          <p class="text-gray-400">Follow our beekeeping journey!</p>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; {new Date().getFullYear()} Hive Five Apiary. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn?.addEventListener('click', () => {
+      menu?.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
