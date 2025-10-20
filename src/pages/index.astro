@@ -11,8 +11,7 @@ const hexagons = [
 ---
 
 <BaseLayout 
-  title="Home" 
-  description="Pure local honey from Hive Five Apiary in Midtown Raleigh, NC. Raw, unfiltered honey from our backyard to your table."
+  title="Home"
 >
   <div class="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 overflow-hidden relative bee-cursor">
     <!-- Animated Background Pattern -->
@@ -21,9 +20,9 @@ const hexagons = [
     </div>
 
     <!-- Hero Section -->
-    <header class="relative flex flex-col items-center justify-start overflow-hidden pt-0 pb-12 hero-section" style="background-image: url('/images/hives-background.jpg'); background-size: cover; background-position: center; min-height: 500px;">
-      <!-- Dark Overlay -->
-      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-amber-50/80 z-10"></div>
+    <header class="relative flex flex-col items-center justify-start overflow-hidden pt-0 pb-0 hero-section" style="min-height: 300px;">
+      <!-- Dark Overlay with smoother transition -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10"></div>
       
       <div class="relative z-20 text-center px-4 mt-0">
         <!-- Logo -->
@@ -31,26 +30,15 @@ const hexagons = [
           <img 
             src="/images/logo.png" 
             alt="Hive Five Apiary Logo" 
-            style="width: 1024px; height: 1024px; max-width: 90vw; max-height: 90vh;"
+            style="width: 700px; height: 700px; max-width: 85vw; max-height: 85vh;"
             class="drop-shadow-2xl"
           />
-        </div>
-
-        <!-- Tagline -->
-        <div class="flex gap-4 justify-center items-center -mt-4">
-          <svg class="w-8 h-8 text-amber-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-          </svg>
-          <p class="text-2xl text-amber-800 font-semibold drop-shadow-lg">Pure Local Honey from Our Backyard to Your Table</p>
-          <svg class="w-8 h-8 text-amber-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-          </svg>
         </div>
       </div>
     </header>
 
     <!-- Honeycomb Gallery Section -->
-    <section class="relative py-24 px-4 hexagon-section">
+    <section class="relative pt-2 pb-16 px-4 hexagon-section">
       <div class="max-w-[1800px] mx-auto">
         <!-- Hexagon Grid - Single row of 5 hexagons -->
         <div class="flex flex-col items-center gap-6">
@@ -63,11 +51,6 @@ const hexagons = [
                 >
                   <div class="hexagon-content">
                     <span class="hexagon-label">{hex.title}</span>
-                    {hex.emoji && (
-                      <div class="text-6xl hexagon-emoji">
-                        {hex.emoji}
-                      </div>
-                    )}
                   </div>
                 </div>
               </a>
@@ -91,7 +74,7 @@ const hexagons = [
   </div>
 
   <!-- Spacer between content and footer -->
-  <div class="bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 h-16"></div>
+  <div class="bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 h-24"></div>
 
   <style>
     @keyframes bgFloat {
@@ -205,14 +188,13 @@ const hexagons = [
     .hexagon-label {
       color: white;
       font-weight: bold;
-      font-size: 1.5rem;
+      font-size: 2rem;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
       transition: transform 0.3s ease, font-size 0.3s ease;
     }
 
     .hexagon-container:hover .hexagon-label {
-      transform: translateY(20px);
-      font-size: 1.125rem;
+      font-size: 2.5rem;
     }
     
     .hexagon-container:hover .hexagon {

@@ -1,0 +1,744 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Our Bees">
+  <div class="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 bee-cursor">
+    <!-- Animated Background Pattern -->
+    <div class="fixed inset-0 opacity-10 pointer-events-none">
+      <div class="absolute inset-0 bg-pattern"></div>
+    </div>
+
+    <!-- Hero Section with Logo and Title -->
+    <header class="relative flex items-start justify-between overflow-hidden pt-8 pb-0 px-8" style="min-height: 200px;">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10"></div>
+      
+      <div class="relative z-20 flex flex-col justify-center" style="height: 256px;">
+        <h1 class="text-5xl font-bold text-white drop-shadow-lg">Our Bees</h1>
+        <div class="w-24 h-1 bg-amber-500 mt-4"></div>
+      </div>
+
+      <div class="relative z-20">
+        <img 
+          src="/images/logo.png" 
+          alt="Hive Five Apiary Logo" 
+          class="w-64 h-64 opacity-90 drop-shadow-xl"
+        />
+      </div>
+    </header>
+
+    <!-- Bee Types Section -->
+    <div class="px-8 py-8">
+      <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl p-8 mb-12" style="max-width: 83vw; margin: 0 auto;">
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr_1fr] gap-12 items-center">
+          <div class="lg:col-span-1 flex flex-col" style="max-height: 450px;">
+            <div class="rounded-2xl overflow-hidden shadow-lg bg-gray-900 p-6 flex items-center justify-center flex-1">
+              <div class="w-full">
+                <video 
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  controls 
+                  class="w-full rounded-lg shadow-lg"
+                  style="max-height: 400px;"
+                >
+                  <source src="/images/Worker-orientation-flights.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            <p class="text-sm text-white text-center mt-4 bg-gray-900 py-2 rounded-b-2xl">worker bee orientation flights</p>
+          </div>
+
+          <div class="lg:col-span-1 flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-amber-900 mb-6 text-center">Meet Our Colonies</h2>
+            <p class="text-gray-700 mb-4 leading-relaxed text-xl">
+              Our apiary is home to Italian honeybees (Apis mellifera ligustica), known for their gentle temperament and excellent honey production. These golden-colored bees are perfect for urban beekeeping and are well-suited to our North Carolina climate.
+            </p>
+            <p class="text-gray-700 mb-4 leading-relaxed text-xl">
+              We also maintain colonies of Caucasian honeybees (Apis mellifera caucasica), which are prized for their extremely gentle nature and ability to work in cooler, wetter conditions. Originating from the Caucasus Mountains, these darker bees are excellent foragers and produce a distinctive, flavorful honey. They're known for using more propolis than other subspecies, which helps protect the hive.
+            </p>
+            <p class="text-gray-700 leading-relaxed text-xl">
+              Each of our hives has its own personality! We maintain several colonies, each led by a laying queen who can produce up to 2,000 eggs per day during peak season. Our colonies range from 30,000 to 60,000 bees during the busy summer months.
+            </p>
+          </div>
+
+          <div class="lg:col-span-1 flex flex-col" style="max-height: 450px;">
+            <div class="colonies-carousel-container relative overflow-hidden rounded-xl bg-gray-900 rounded-2xl shadow-2xl flex-1" style="max-height: 450px;">
+              <div class="colonies-carousel-track flex transition-transform duration-500 ease-in-out h-full">
+                <div class="colonies-carousel-slide min-w-full h-full">
+                  <img 
+                    src="/images/our-colonies.JPG" 
+                    alt="Our Bee Colonies 1" 
+                    class="w-full h-full object-contain"
+                  />
+                </div>
+                <div class="colonies-carousel-slide min-w-full h-full">
+                  <img 
+                    src="/images/our-colonies2.jpg" 
+                    alt="Our Bee Colonies 2" 
+                    class="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
+
+              <button 
+                id="colonies-prev-btn"
+                class="absolute left-2 top-1/2 -translate-y-1/2 bg-amber-500/90 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+                aria-label="Previous image"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+
+              <button 
+                id="colonies-next-btn"
+                class="absolute right-2 top-1/2 -translate-y-1/2 bg-amber-500/90 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+                aria-label="Next image"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+            
+            <div class="flex justify-center gap-2 mt-4">
+              <button class="colonies-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="0"></button>
+              <button class="colonies-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="1"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Queen Bees Section -->
+    <div class="px-8 py-8">
+      <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl p-8 mb-12" style="max-width: 83vw; margin: 0 auto;">
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr_1fr] gap-12 items-center">
+          <div class="lg:col-span-1 flex flex-col" style="max-height: 500px;">
+            <div class="rounded-2xl overflow-hidden shadow-lg bg-gray-900 p-6 flex items-center justify-center flex-1">
+              <div style="max-width: 400px; max-height: 500px;">
+                <video 
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  controls 
+                  class="w-full rounded-lg shadow-lg"
+                  style="max-height: 500px;"
+                >
+                  <source src="/images/laying-queen.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            <p class="text-sm text-white text-center mt-4 bg-gray-900 py-2 rounded-b-2xl">queen laying eggs</p>
+          </div>
+
+          <div class="lg:col-span-1 flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-amber-900 mb-6 text-center">Our Queens</h2>
+            <p class="text-gray-700 mb-4 leading-relaxed text-xl">
+              The queen bee is the heart of every hive. She's the only bee in the colony that lays fertilized eggs, and her pheromones help maintain harmony among thousands of worker bees. Remarkably, there is typically only one queen per hive, and she is visibly different from her workers—noticeably longer and more slender, with a distinctive elongated abdomen.
+            </p>
+            <p class="text-gray-700 mb-4 leading-relaxed text-xl">
+              Queen bees are created through a fascinating process involving royal jelly. When a colony needs a new queen, worker bees select young larvae and feed them exclusively with royal jelly—a protein-rich secretion produced by nurse bees. This special diet triggers the development of a larva into a queen rather than a worker bee. Royal jelly is so nutritionally powerful that it causes the queen to develop fully functional reproductive organs and grow nearly twice the size of a worker bee.
+            </p>
+            <p class="text-gray-700 mb-4 leading-relaxed text-xl">
+              Our queens are carefully selected for their gentle genetics and strong egg-laying patterns. We work with local queen breeders to ensure our colonies have the best genetics suited for our region.
+            </p>
+            <p class="text-gray-700 leading-relaxed text-xl">
+              A healthy queen can live 3-5 years, though we monitor each queen's performance and replace her when necessary to maintain colony health.
+            </p>
+          </div>
+
+          <div class="lg:col-span-1 flex flex-col" style="max-height: 500px;">
+            <div class="carousel-container relative overflow-hidden rounded-xl bg-gray-900 rounded-2xl shadow-2xl flex-1" style="max-height: 500px;">
+              <div class="carousel-track flex transition-transform duration-500 ease-in-out h-full">
+                <div class="carousel-slide min-w-full h-full">
+                  <img 
+                    src="/images/our-queens1.jpg" 
+                    alt="Queen Bee 1" 
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="carousel-slide min-w-full h-full">
+                  <img 
+                    src="/images/our-queens2.jpg" 
+                    alt="Queen Bee 2" 
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="carousel-slide min-w-full h-full">
+                  <img 
+                    src="/images/our-queens3.jpg" 
+                    alt="Queen Bee 3" 
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="carousel-slide min-w-full h-full">
+                  <img 
+                    src="/images/our-queens4.jpg" 
+                    alt="Queen Bee 4" 
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              <button 
+                id="prev-btn"
+                class="absolute left-2 top-1/2 -translate-y-1/2 bg-amber-500/90 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+                aria-label="Previous image"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+
+              <button 
+                id="next-btn"
+                class="absolute right-2 top-1/2 -translate-y-1/2 bg-amber-500/90 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+                aria-label="Next image"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+            
+            <div class="flex justify-center gap-2 mt-4">
+              <button class="carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="0"></button>
+              <button class="carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="1"></button>
+              <button class="carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="2"></button>
+              <button class="carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="3"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bee Care Section -->
+    <div class="px-8 py-8">
+      <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl p-8 mb-12" style="max-width: 83vw; margin: 0 auto;">
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr_1fr] gap-12 items-center">
+          <div class="lg:col-span-1 flex flex-col" style="max-height: 500px;">
+            <div class="rounded-2xl overflow-hidden shadow-lg bg-gray-900 p-6 flex items-center justify-center flex-1">
+              <div class="w-full">
+                <video 
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  controls 
+                  class="w-full rounded-lg shadow-lg"
+                  style="max-height: 500px;"
+                >
+                  <source src="/images/inspection.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            <p class="text-sm text-white text-center mt-4 bg-gray-900 py-2 rounded-b-2xl">inspecting frames</p>
+          </div>
+
+          <div class="lg:col-span-1 flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-amber-900 mb-6 text-center">How We Care for Our Bees</h2>
+            <p class="text-gray-700 mb-4 leading-relaxed text-xl">
+              We conduct regular hive inspections every 7-10 days during active season, checking for signs of disease, ensuring the queen is laying, and monitoring food stores. We practice integrated pest management, using the least invasive methods to keep our bees healthy.
+            </p>
+            <p class="text-gray-700 mb-4 leading-relaxed text-xl">
+              Our bees have access to natural forage year-round from gardens, trees, and flowering plants throughout Midtown Raleigh. We supplement with sugar syrup only when necessary during times of dearth, and we never harvest more honey than the bees can spare.
+            </p>
+            <p class="text-gray-700 leading-relaxed text-xl">
+              During winter, we ensure our colonies have adequate food stores and proper insulation. We minimize inspections in cold weather to help the bees maintain their cluster temperature and conserve energy.
+            </p>
+          </div>
+
+          <div class="lg:col-span-1 flex flex-col" style="max-height: 500px;">
+            <div class="care-carousel-container relative overflow-hidden rounded-xl bg-gray-900 rounded-2xl shadow-2xl flex-1" style="max-height: 500px;">
+              <div class="care-carousel-track flex transition-transform duration-500 ease-in-out h-full">
+                <div class="care-carousel-slide min-w-full h-full">
+                  <img 
+                    src="/images/care1.jpg" 
+                    alt="Bee Care 1" 
+                    class="w-full h-full object-contain"
+                  />
+                </div>
+                <div class="care-carousel-slide min-w-full h-full">
+                  <img 
+                    src="/images/care2.jpg" 
+                    alt="Bee Care 2" 
+                    class="w-full h-full object-contain"
+                  />
+                </div>
+                <div class="care-carousel-slide min-w-full h-full">
+                  <img 
+                    src="/images/care3.jpg" 
+                    alt="Bee Care 3" 
+                    class="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
+
+              <button 
+                id="care-prev-btn"
+                class="absolute left-2 top-1/2 -translate-y-1/2 bg-amber-500/90 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+                aria-label="Previous image"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+
+              <button 
+                id="care-next-btn"
+                class="absolute right-2 top-1/2 -translate-y-1/2 bg-amber-500/90 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+                aria-label="Next image"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+            
+            <div class="flex justify-center gap-2 mt-4">
+              <button class="care-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="0"></button>
+              <button class="care-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="1"></button>
+              <button class="care-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="2"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fun Facts Section -->
+    <div class="px-8 py-8 pb-16">
+      <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl p-8" style="max-width: 83vw; margin: 0 auto;">
+        <h2 class="text-3xl font-bold text-amber-900 mb-8 text-center">Fascinating Honey Bee Facts</h2>
+        
+        <div class="relative px-12">
+          <div class="facts-carousel-container overflow-hidden">
+            <div class="facts-carousel-track flex transition-transform duration-500 ease-in-out gap-8">
+              <!-- Fact 1 -->
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+                <div class="text-center mb-4">
+                  <div class="text-5xl mb-3">🐝</div>
+                  <h3 class="text-2xl font-bold text-amber-800">One Bee's Lifetime Production</h3>
+                </div>
+                <p class="text-gray-700 text-lg text-center leading-relaxed">A single worker bee produces only about 1/12 of a teaspoon of honey in her entire lifetime!</p>
+              </div>
+              
+              <!-- Fact 2 -->
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+                <div class="text-center mb-4">
+                  <div class="text-5xl mb-3">✈️</div>
+                  <h3 class="text-2xl font-bold text-amber-800">Flight Distance</h3>
+                </div>
+                <p class="text-gray-700 text-lg text-center leading-relaxed">Bees will fly up to 3 miles from their hive to forage for nectar and pollen.</p>
+              </div>
+              
+              <!-- Fact 3 -->
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+                <div class="text-center mb-4">
+                  <div class="text-5xl mb-3">💃</div>
+                  <h3 class="text-2xl font-bold text-amber-800">Waggle Dance</h3>
+                </div>
+                <p class="text-gray-700 text-lg text-center leading-relaxed">Bees communicate the location of flowers through a "waggle dance" that indicates direction and distance.</p>
+              </div>
+              
+              <!-- Fact 4 -->
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+                <div class="text-center mb-4">
+                  <div class="text-5xl mb-3">🌸</div>
+                  <h3 class="text-2xl font-bold text-amber-800">Pollination Power</h3>
+                </div>
+                <p class="text-gray-700 text-lg text-center leading-relaxed">Honey bees are responsible for pollinating approximately one-third of the food we eat!</p>
+              </div>
+              
+              <!-- Fact 5 -->
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+                <div class="text-center mb-4">
+                  <div class="text-5xl mb-3">🏠</div>
+                  <h3 class="text-2xl font-bold text-amber-800">Hexagonal Engineering</h3>
+                </div>
+                <p class="text-gray-700 text-lg text-center leading-relaxed">Bees build hexagonal cells because it's the most efficient use of wax and provides maximum strength.</p>
+              </div>
+              
+              <!-- Fact 6 -->
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+                <div class="text-center mb-4">
+                  <div class="text-5xl mb-3">⏱️</div>
+                  <h3 class="text-2xl font-bold text-amber-800">Wing Speed</h3>
+                </div>
+                <p class="text-gray-700 text-lg text-center leading-relaxed">A honey bee's wings beat about 200 times per second, creating their distinctive buzz!</p>
+              </div>
+              
+              <!-- Fact 7 -->
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+                <div class="text-center mb-4">
+                  <div class="text-5xl mb-3">👁️</div>
+                  <h3 class="text-2xl font-bold text-amber-800">Five Eyes</h3>
+                </div>
+                <p class="text-gray-700 text-lg text-center leading-relaxed">Honey bees have five eyes—two large compound eyes and three smaller simple eyes on top of their head!</p>
+              </div>
+              
+              <!-- Fact 8 -->
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+                <div class="text-center mb-4">
+                  <div class="text-5xl mb-3">🌡️</div>
+                  <h3 class="text-2xl font-bold text-amber-800">Temperature Control</h3>
+                </div>
+                <p class="text-gray-700 text-lg text-center leading-relaxed">Bees maintain their hive at a constant 93-95°F by fanning their wings to cool it or clustering together to warm it.</p>
+              </div>
+              
+              <!-- Fact 9 -->
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+                <div class="text-center mb-4">
+                  <div class="text-5xl mb-3">🌍</div>
+                  <h3 class="text-2xl font-bold text-amber-800">Global Impact</h3>
+                </div>
+                <p class="text-gray-700 text-lg text-center leading-relaxed">There are over 20,000 species of bees worldwide, but only 7-8 species are true honey bees!</p>
+              </div>
+              
+              <!-- Fact 10 -->
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+                <div class="text-center mb-4">
+                  <div class="text-5xl mb-3">🍯</div>
+                  <h3 class="text-2xl font-bold text-amber-800">Ancient Sweetener</h3>
+                </div>
+                <p class="text-gray-700 text-lg text-center leading-relaxed">Honey never spoils! Archaeologists have found 3,000-year-old honey in Egyptian tombs that was still edible.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <button 
+            id="facts-prev-btn"
+            class="absolute left-[-20px] top-1/2 -translate-y-1/2 bg-amber-500/90 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+            aria-label="Previous fact"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+
+          <button 
+            id="facts-next-btn"
+            class="absolute right-[-20px] top-1/2 -translate-y-1/2 bg-amber-500/90 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+            aria-label="Next fact"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Carousel Indicators -->
+        <div class="flex justify-center gap-2 mt-6">
+          <button class="facts-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="0"></button>
+          <button class="facts-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="1"></button>
+          <button class="facts-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="2"></button>
+          <button class="facts-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="3"></button>
+          <button class="facts-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="4"></button>
+          <button class="facts-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="5"></button>
+          <button class="facts-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="6"></button>
+          <button class="facts-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index="7"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .bee-cursor,
+    .bee-cursor * {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22><text y=%2232%22 font-size=%2232%22>🐝</text></svg>') 20 20, auto !important;
+    }
+
+    .bg-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='%23f59e0b' fill-opacity='0.3' stroke='%23f59e0b' stroke-width='1'/%3E%3C/svg%3E");
+      background-size: 60px 60px;
+    }
+
+    .carousel-dot.active {
+      background-color: #f59e0b;
+      width: 2rem;
+    }
+
+    .care-carousel-dot.active {
+      background-color: #f59e0b;
+      width: 2rem;
+    }
+
+    .colonies-carousel-dot.active {
+      background-color: #f59e0b;
+      width: 2rem;
+    }
+
+    .facts-carousel-dot.active {
+      background-color: #f59e0b;
+      width: 2rem;
+    }
+  </style>
+
+  <script is:inline>
+    // Colonies carousel
+    let currentColoniesSlide = 0;
+    const coloniesSlides = document.querySelectorAll('.colonies-carousel-slide');
+    const coloniesDots = document.querySelectorAll('.colonies-carousel-dot');
+    const coloniesTrack = document.querySelector('.colonies-carousel-track');
+    const coloniesPrevBtn = document.getElementById('colonies-prev-btn');
+    const coloniesNextBtn = document.getElementById('colonies-next-btn');
+    const totalColoniesSlides = coloniesSlides.length;
+
+    function updateColoniesCarousel() {
+      if (coloniesTrack) {
+        coloniesTrack.style.transform = `translateX(-${currentColoniesSlide * 100}%)`;
+      }
+      coloniesDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentColoniesSlide);
+      });
+    }
+
+    function nextColoniesSlide() {
+      currentColoniesSlide = (currentColoniesSlide + 1) % totalColoniesSlides;
+      updateColoniesCarousel();
+    }
+
+    function prevColoniesSlide() {
+      currentColoniesSlide = (currentColoniesSlide - 1 + totalColoniesSlides) % totalColoniesSlides;
+      updateColoniesCarousel();
+    }
+
+    if (coloniesNextBtn) {
+      coloniesNextBtn.addEventListener('click', nextColoniesSlide);
+    }
+    if (coloniesPrevBtn) {
+      coloniesPrevBtn.addEventListener('click', prevColoniesSlide);
+    }
+
+    coloniesDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentColoniesSlide = index;
+        updateColoniesCarousel();
+      });
+    });
+
+    let coloniesAutoScroll = setInterval(nextColoniesSlide, 5000);
+
+    const coloniesCarouselContainer = document.querySelector('.colonies-carousel-container');
+    if (coloniesCarouselContainer) {
+      coloniesCarouselContainer.addEventListener('mouseenter', () => {
+        clearInterval(coloniesAutoScroll);
+      });
+      coloniesCarouselContainer.addEventListener('mouseleave', () => {
+        coloniesAutoScroll = setInterval(nextColoniesSlide, 5000);
+      });
+    }
+
+    updateColoniesCarousel();
+
+    // Queens carousel
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const track = document.querySelector('.carousel-track');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const totalSlides = slides.length;
+
+    function updateCarousel() {
+      if (track) {
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', nextSlide);
+    }
+    if (prevBtn) {
+      prevBtn.addEventListener('click', prevSlide);
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentSlide = index;
+        updateCarousel();
+      });
+    });
+
+    let autoScroll = setInterval(nextSlide, 5000);
+
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (carouselContainer) {
+      carouselContainer.addEventListener('mouseenter', () => {
+        clearInterval(autoScroll);
+      });
+      carouselContainer.addEventListener('mouseleave', () => {
+        autoScroll = setInterval(nextSlide, 5000);
+      });
+    }
+
+    updateCarousel();
+
+    // Care carousel
+    let currentCareSlide = 0;
+    const careSlides = document.querySelectorAll('.care-carousel-slide');
+    const careDots = document.querySelectorAll('.care-carousel-dot');
+    const careTrack = document.querySelector('.care-carousel-track');
+    const carePrevBtn = document.getElementById('care-prev-btn');
+    const careNextBtn = document.getElementById('care-next-btn');
+    const totalCareSlides = careSlides.length;
+
+    function updateCareCarousel() {
+      if (careTrack) {
+        careTrack.style.transform = `translateX(-${currentCareSlide * 100}%)`;
+      }
+      careDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentCareSlide);
+      });
+    }
+
+    function nextCareSlide() {
+      currentCareSlide = (currentCareSlide + 1) % totalCareSlides;
+      updateCareCarousel();
+    }
+
+    function prevCareSlide() {
+      currentCareSlide = (currentCareSlide - 1 + totalCareSlides) % totalCareSlides;
+      updateCareCarousel();
+    }
+
+    if (careNextBtn) {
+      careNextBtn.addEventListener('click', nextCareSlide);
+    }
+    if (carePrevBtn) {
+      carePrevBtn.addEventListener('click', prevCareSlide);
+    }
+
+    careDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentCareSlide = index;
+        updateCareCarousel();
+      });
+    });
+
+    let careAutoScroll = setInterval(nextCareSlide, 5000);
+
+    const careCarouselContainer = document.querySelector('.care-carousel-container');
+    if (careCarouselContainer) {
+      careCarouselContainer.addEventListener('mouseenter', () => {
+        clearInterval(careAutoScroll);
+      });
+      careCarouselContainer.addEventListener('mouseleave', () => {
+        careAutoScroll = setInterval(nextCareSlide, 5000);
+      });
+    }
+
+    updateCareCarousel();
+
+    // Facts carousel
+    let currentFactsSlide = 0;
+    const factsItems = document.querySelectorAll('.facts-carousel-fact');
+    const factsDots = document.querySelectorAll('.facts-carousel-dot');
+    const factsTrack = document.querySelector('.facts-carousel-track');
+    const factsPrevBtn = document.getElementById('facts-prev-btn');
+    const factsNextBtn = document.getElementById('facts-next-btn');
+    const totalFactsSlides = factsItems.length;
+    const maxSlide = totalFactsSlides - 3;
+
+    function updateFactsCarousel() {
+      if (factsTrack && factsItems.length > 0) {
+        const factWidth = factsItems[0].offsetWidth;
+        const gap = 32; // 8 * 4px = 32px gap
+        const offset = currentFactsSlide * (factWidth + gap);
+        factsTrack.style.transform = `translateX(-${offset}px)`;
+      }
+      
+      // Update center fact highlight
+      factsItems.forEach((fact, index) => {
+        const centerIndex = currentFactsSlide + 1; // Middle fact
+        if (index === centerIndex) {
+          fact.style.transform = 'scale(1.05)';
+          fact.style.boxShadow = '0 10px 30px rgba(245, 158, 11, 0.3)';
+        } else {
+          fact.style.transform = 'scale(1)';
+          fact.style.boxShadow = '';
+        }
+      });
+      
+      factsDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentFactsSlide);
+      });
+    }
+
+    function nextFactsSlide() {
+      if (currentFactsSlide < maxSlide) {
+        currentFactsSlide++;
+      } else {
+        currentFactsSlide = 0;
+      }
+      updateFactsCarousel();
+    }
+
+    function prevFactsSlide() {
+      if (currentFactsSlide > 0) {
+        currentFactsSlide--;
+      } else {
+        currentFactsSlide = maxSlide;
+      }
+      updateFactsCarousel();
+    }
+
+    if (factsNextBtn) {
+      factsNextBtn.addEventListener('click', nextFactsSlide);
+    }
+    if (factsPrevBtn) {
+      factsPrevBtn.addEventListener('click', prevFactsSlide);
+    }
+
+    factsDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentFactsSlide = Math.min(index, maxSlide);
+        updateFactsCarousel();
+      });
+    });
+
+    let factsAutoScroll = setInterval(nextFactsSlide, 5000);
+
+    const factsCarouselContainer = document.querySelector('.facts-carousel-container');
+    if (factsCarouselContainer) {
+      factsCarouselContainer.addEventListener('mouseenter', () => {
+        clearInterval(factsAutoScroll);
+      });
+      factsCarouselContainer.addEventListener('mouseleave', () => {
+        factsAutoScroll = setInterval(nextFactsSlide, 5000);
+      });
+    }
+
+    updateFactsCarousel();
+  </script>
+</BaseLayout>Slide, 5000);
+      });
+    }
+
+    updateFactsCarousel();Slide, 5000);
+      });
+    }
+
+    updateFactsCarousel();
+  </script>
+</BaseLayout>

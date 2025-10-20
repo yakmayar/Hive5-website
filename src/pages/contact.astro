@@ -1,0 +1,258 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact">
+  <!-- Load Cloudflare Turnstile Script -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  
+  <div class="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 bee-cursor">
+    <!-- Animated Background Pattern -->
+    <div class="fixed inset-0 opacity-10 pointer-events-none">
+      <div class="absolute inset-0 bg-pattern"></div>
+    </div>
+
+    <!-- Hero Section with Logo -->
+    <header class="relative flex flex-col items-end justify-start overflow-hidden pt-8 pb-0" style="min-height: 200px;">
+      <!-- Dark Overlay with smoother transition -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10"></div>
+      
+      <div class="relative z-20 pr-8">
+        <!-- Logo in upper right, larger -->
+        <img 
+          src="/images/logo.png" 
+          alt="Hive Five Apiary Logo" 
+          class="w-64 h-64 opacity-90 drop-shadow-xl"
+        />
+      </div>
+    </header>
+
+    <!-- Page Header - aligned with logo -->
+    <div class="container mx-auto px-4 py-0">
+      <div class="flex items-center justify-between" style="margin-top: -180px;">
+        <div class="pl-4">
+          <h1 class="text-5xl font-bold text-amber-800 mb-4">Contact Us</h1>
+          <div class="w-24 h-1 bg-amber-500 mb-8"></div>
+        </div>
+        <div style="width: 256px;"></div> <!-- Spacer for logo -->
+      </div>
+    </div>
+
+    <!-- Contact Form Section -->
+    <div class="container mx-auto px-4 py-20 pb-16">
+      <div class="max-w-2xl mx-auto">
+        <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl p-8 mb-8">
+          <p class="text-gray-700 text-lg mb-8 text-center">
+            If you have questions about our honey, want to learn more about beekeeping, or would like to purchase a product, we would love to hear from you. Please fill out the form and we typically respond in less than 24 hours.
+          </p>
+
+          <form id="contact-form" class="space-y-6">
+            <!-- Honeypot Field - Hidden from humans, but bots will fill it -->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+              <label for="website">Website (leave blank)</label>
+              <input 
+                type="text" 
+                id="website" 
+                name="website" 
+                tabindex="-1" 
+                autocomplete="off"
+              />
+            </div>
+
+            <!-- Hidden Timestamp Field - Records when form was loaded -->
+            <input type="hidden" id="form-timestamp" name="form-timestamp" value="" />
+
+            <!-- Name Field -->
+            <div>
+              <label for="name" class="block text-amber-900 font-semibold mb-2">
+                Name *
+              </label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required
+                class="w-full px-4 py-3 rounded-lg border border-amber-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+                placeholder="Your name"
+              />
+            </div>
+
+            <!-- Email Field -->
+            <div>
+              <label for="email" class="block text-amber-900 font-semibold mb-2">
+                Email *
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required
+                class="w-full px-4 py-3 rounded-lg border border-amber-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+                placeholder="your.email@example.com"
+              />
+            </div>
+
+            <!-- Phone Field (Optional) -->
+            <div>
+              <label for="phone" class="block text-amber-900 font-semibold mb-2">
+                Phone <span class="text-gray-500 font-normal">(optional)</span>
+              </label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone"
+                class="w-full px-4 py-3 rounded-lg border border-amber-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+                placeholder="(555) 123-4567"
+              />
+            </div>
+
+            <!-- Subject Field -->
+            <div>
+              <label for="subject" class="block text-amber-900 font-semibold mb-2">
+                Subject *
+              </label>
+              <input 
+                type="text" 
+                id="subject" 
+                name="subject" 
+                required
+                class="w-full px-4 py-3 rounded-lg border border-amber-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+                placeholder="What's this about?"
+              />
+            </div>
+
+            <!-- Message Field -->
+            <div>
+              <label for="message" class="block text-amber-900 font-semibold mb-2">
+                Message *
+              </label>
+              <textarea 
+                id="message" 
+                name="message" 
+                required
+                rows="6"
+                class="w-full px-4 py-3 rounded-lg border border-amber-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all resize-vertical"
+                placeholder="Tell us what's on your mind..."
+              ></textarea>
+            </div>
+
+            <!-- Cloudflare Turnstile Widget -->
+            <div>
+              <div class="cf-turnstile" data-sitekey="0x4AAAAAAB7dIJWlrAp1hIuw"></div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <button 
+                type="submit"
+                class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-4 px-12 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                Send Message
+              </button>
+            </div>
+
+            <!-- Success/Error Messages -->
+            <div id="form-message" class="hidden text-center p-4 rounded-lg"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .bee-cursor,
+    .bee-cursor * {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22><text y=%2232%22 font-size=%2232%22>🐝</text></svg>') 20 20, auto !important;
+    }
+
+    .bg-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='%23f59e0b' fill-opacity='0.3' stroke='%23f59e0b' stroke-width='1'/%3E%3C/svg%3E");
+      background-size: 60px 60px;
+    }
+  </style>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
+    const timestampField = document.getElementById('form-timestamp');
+
+    // Record the timestamp when the page loads (in milliseconds)
+    if (timestampField) {
+      timestampField.value = Date.now().toString();
+    }
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // HONEYPOT CHECK: If the "website" field is filled, it's a bot
+      const honeypotValue = document.getElementById('website')?.value;
+      if (honeypotValue) {
+        // Silently reject - don't tell the bot it failed
+        console.log('Honeypot triggered - submission blocked');
+        return;
+      }
+
+      // TIMESTAMP CHECK: Reject if form submitted too quickly (less than 3 seconds)
+      const formLoadTime = parseInt(timestampField?.value || '0');
+      const currentTime = Date.now();
+      const timeElapsed = (currentTime - formLoadTime) / 1000; // Convert to seconds
+      
+      if (timeElapsed < 3) {
+        if (formMessage) {
+          formMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700');
+          formMessage.classList.add('bg-red-100', 'text-red-700');
+          formMessage.textContent = 'Please take a moment to review your message before submitting.';
+        }
+        return;
+      }
+      
+      // TURNSTILE CHECK: Validate the Cloudflare security widget
+      const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]')?.value;
+      
+      if (!turnstileResponse) {
+        if (formMessage) {
+          formMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700');
+          formMessage.classList.add('bg-red-100', 'text-red-700');
+          formMessage.textContent = 'Please complete the security check.';
+        }
+        return;
+      }
+      
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        subject: formData.get('subject'),
+        message: formData.get('message')
+      };
+
+      // Create mailto link with form data
+      const mailtoLink = `mailto:hive5apiary@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(
+        `Name: ${data.name}\n` +
+        `Email: ${data.email}\n` +
+        `Phone: ${data.phone || 'Not provided'}\n\n` +
+        `Message:\n${data.message}`
+      )}`;
+
+      // Open default email client
+      window.location.href = mailtoLink;
+
+      // Show success message
+      if (formMessage) {
+        formMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+        formMessage.classList.add('bg-green-100', 'text-green-700');
+        formMessage.textContent = 'Opening your email client... If it doesn\'t open automatically, please email us at hive5apiary@gmail.com';
+      }
+
+      // Reset form after a delay
+      setTimeout(() => {
+        form.reset();
+        // Reset timestamp for next submission
+        if (timestampField) {
+          timestampField.value = Date.now().toString();
+        }
+      }, 1000);
+    });
+  </script>
+</BaseLayout>
