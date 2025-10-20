@@ -84,7 +84,7 @@ const productionImages = [
                   <img 
                     src={img.image} 
                     alt={img.alt}
-                    class="w-full h-[520px] object-contain bg-gray-900"
+                    class="w-full h-[580px] object-contain bg-gray-900"
                   />
                 </div>
               ))}
@@ -128,16 +128,16 @@ const productionImages = [
         <!-- Description Text (RIGHT) -->
         <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl p-8">
           <p class="text-gray-700 text-lg leading-relaxed mb-4">
-            All of our honey products are from our small backyard apiary in the North Hills (Midtown) area of Raleigh. Honeybees are known for collecting resources up to 3 miles away, so ours are gathering from many different species (depending on what our neighbors have growing in their yards).
+            All of our honey products come from our small backyard apiary in the North Hills (Midtown) area of Raleigh. Honeybees are known for foraging up to 3 miles away, so our bees gather nectar from many different plant species depending on what our neighbors have growing in their yards. This creates honey with unique flavors that reflect our neighborhood's botanical diversity.
           </p>
           <p class="text-gray-700 text-lg leading-relaxed mb-4">
-            We like to take a natural approach with our own yard (avoiding lawn or chemical treatments) by growing native plants, and maintaining a garden throughout the year. We vermicompost most of our food waste and also have chickens that help eat food scraps and compost our leaf pile.
+            We take a natural approach with our own yard, avoiding lawn treatments and chemical applications. Instead, we focus on growing native plants and maintaining a year-round garden. We vermicompost most of our food waste and have chickens that help eat food scraps and compost our leaf pile—all part of our little urban homestead.
           </p>
           <p class="text-gray-700 text-lg leading-relaxed mb-4">
-            We collect our honey from smaller boxes on our hives called honey supers. This lets our bees keep anything they collect in the brood and deep boxes (helping them survive throughout the four seasons). The cappings are then scraped off from the honey, and the frames are put into our extractor. The extractor spins out the honey from our frames and it runs down through a sieve that remove chunks of wax or other large particles (like bee parts). From there, the honey goes into bottles or is transformed into creamed honey.
+            We collect our honey from smaller boxes on our hives called honey supers, which lets our bees keep what they've stored in the brood and deep boxes to help them survive throughout the four seasons. The cappings are scraped off from the honey, and the frames are placed into our extractor. The extractor spins the honey from our frames, and it runs down through a sieve that removes chunks of wax or other large particles. From there, the honey goes into bottles or is transformed into creamed honey.
           </p>
           <p class="text-gray-700 text-lg leading-relaxed">
-            We do not like to take comb from our bees, so any wax we collect is from inspections where some extra comb is built out in the wrong place or it is collected from our extraction process (when removing the cappings). We use this minimal amount of wax we collect in hand lotion, lip balm, and cutting board oil.
+            We practice minimal intervention beekeeping, so any wax we collect comes from inspections where extra comb is built in the wrong place or from our extraction process when removing cappings. We use this small amount of wax in hand lotion, lip balm, and cutting board oil—nothing goes to waste in our sustainable approach to beekeeping.
           </p>
         </div>
       </div>
@@ -145,7 +145,7 @@ const productionImages = [
 
     <!-- Products Grid -->
     <div class="container mx-auto px-4 py-8 pb-16">
-      <div class="flex flex-nowrap justify-center gap-2 max-w-[1800px] mx-auto">
+      <div class="flex flex-wrap justify-center gap-2 max-w-[1800px] mx-auto">
         {products.map((product) => (
           <div class="product-hexagon-container">
             <div 
@@ -167,7 +167,21 @@ const productionImages = [
     <!-- Contact Note -->
     <div class="container mx-auto px-4 py-8 pb-16">
       <div class="bg-amber-100/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 max-w-3xl mx-auto text-center">
-        <h2 class="text-2xl font-bold text-amber-900 mb-4">Interested in Our Products?</h2>
+        <h2 class="text-2xl font-bold text-amber-900 mb-4">Certified North Carolina Honey</h2>
+        <p class="text-gray-700 mb-6">
+          Our honey is part of the Certified Honey Producer program through the North Carolina State Beekeepers Association. This certification ensures our honey meets strict quality standards and is produced right here in North Carolina.
+        </p>
+        <div class="flex justify-center mb-6">
+          <a href="https://www.ncbeekeepers.org/programs/certified-honey-producer" target="_blank" rel="noopener noreferrer">
+            <img 
+              src="/images/Certified-Honey-Label.png" 
+              alt="NC Certified Honey Producer" 
+              class="h-40 hover:scale-105 transition-transform duration-300"
+              style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
+            />
+          </a>
+        </div>
+        <h3 class="text-xl font-bold text-amber-900 mb-3 mt-6">Interested in Our Products?</h3>
         <p class="text-gray-700 mb-6">
           We produce limited quantities of honey and honey products based on what our bees provide each season. 
           If you'd like to learn more about availability or place an order, please get in touch!

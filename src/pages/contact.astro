@@ -12,34 +12,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="absolute inset-0 bg-pattern"></div>
     </div>
 
-    <!-- Hero Section with Logo -->
-    <header class="relative flex flex-col items-end justify-start overflow-hidden pt-8 pb-0" style="min-height: 200px;">
+    <!-- Hero Section with Logo and Title -->
+    <header class="relative flex flex-col items-center justify-start overflow-hidden pt-8 pb-0" style="min-height: 200px;">
       <!-- Dark Overlay with smoother transition -->
       <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10"></div>
       
-      <div class="relative z-20 pr-8">
-        <!-- Logo in upper right, larger -->
-        <img 
-          src="/images/logo.png" 
-          alt="Hive Five Apiary Logo" 
-          class="w-64 h-64 opacity-90 drop-shadow-xl"
-        />
+      <div class="relative z-20 w-full max-w-7xl px-8">
+        <div class="flex justify-between items-center">
+          <!-- Page Title on left -->
+          <div>
+            <h1 class="text-5xl font-bold text-amber-800 mb-2">Contact Us</h1>
+            <div class="w-24 h-1 bg-amber-500"></div>
+          </div>
+          
+          <!-- Logo on right -->
+          <img 
+            src="/images/logo.png" 
+            alt="Hive Five Apiary Logo" 
+            class="w-64 h-64 opacity-90 drop-shadow-xl"
+          />
+        </div>
       </div>
     </header>
 
-    <!-- Page Header - aligned with logo -->
-    <div class="container mx-auto px-4 py-0">
-      <div class="flex items-center justify-between" style="margin-top: -180px;">
-        <div class="pl-4">
-          <h1 class="text-5xl font-bold text-amber-800 mb-4">Contact Us</h1>
-          <div class="w-24 h-1 bg-amber-500 mb-8"></div>
-        </div>
-        <div style="width: 256px;"></div> <!-- Spacer for logo -->
-      </div>
-    </div>
-
     <!-- Contact Form Section -->
-    <div class="container mx-auto px-4 py-20 pb-16">
+    <div class="container mx-auto px-4 py-8 pb-16">
       <div class="max-w-2xl mx-auto">
         <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl p-8 mb-8">
           <p class="text-gray-700 text-lg mb-8 text-center">
@@ -137,7 +134,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
 
             <!-- Cloudflare Turnstile Widget -->
-            <div>
+            <div class="flex justify-center">
               <div class="cf-turnstile" data-sitekey="0x4AAAAAAB7dIJWlrAp1hIuw"></div>
             </div>
 

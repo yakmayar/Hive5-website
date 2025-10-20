@@ -10,20 +10,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
 
     <!-- Hero Section with Logo and Title -->
-    <header class="relative flex items-start justify-between overflow-hidden pt-8 pb-0 px-8" style="min-height: 200px;">
+    <header class="relative flex flex-col items-center justify-start overflow-hidden pt-8 pb-0" style="min-height: 200px;">
       <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10"></div>
       
-      <div class="relative z-20 flex flex-col justify-center" style="height: 256px;">
-        <h1 class="text-5xl font-bold text-white drop-shadow-lg">Our Bees</h1>
-        <div class="w-24 h-1 bg-amber-500 mt-4"></div>
-      </div>
-
-      <div class="relative z-20">
-        <img 
-          src="/images/logo.png" 
-          alt="Hive Five Apiary Logo" 
-          class="w-64 h-64 opacity-90 drop-shadow-xl"
-        />
+      <div class="relative z-20 w-full max-w-7xl px-8">
+        <div class="flex justify-between items-center">
+          <div>
+            <h1 class="text-5xl font-bold text-amber-800 mb-2">Our Bees</h1>
+            <div class="w-24 h-1 bg-amber-500"></div>
+          </div>
+          
+          <img 
+            src="/images/logo.png" 
+            alt="Hive Five Apiary Logo" 
+            class="w-64 h-64 opacity-90 drop-shadow-xl"
+          />
+        </div>
       </div>
     </header>
 
@@ -321,7 +323,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="facts-carousel-container overflow-hidden">
             <div class="facts-carousel-track flex transition-transform duration-500 ease-in-out gap-8">
               <!-- Fact 1 -->
-              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500">
                 <div class="text-center mb-4">
                   <div class="text-5xl mb-3">🐝</div>
                   <h3 class="text-2xl font-bold text-amber-800">One Bee's Lifetime Production</h3>
@@ -330,7 +332,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
               
               <!-- Fact 2 -->
-              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500">
                 <div class="text-center mb-4">
                   <div class="text-5xl mb-3">✈️</div>
                   <h3 class="text-2xl font-bold text-amber-800">Flight Distance</h3>
@@ -339,7 +341,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
               
               <!-- Fact 3 -->
-              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500">
                 <div class="text-center mb-4">
                   <div class="text-5xl mb-3">💃</div>
                   <h3 class="text-2xl font-bold text-amber-800">Waggle Dance</h3>
@@ -348,7 +350,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
               
               <!-- Fact 4 -->
-              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500">
                 <div class="text-center mb-4">
                   <div class="text-5xl mb-3">🌸</div>
                   <h3 class="text-2xl font-bold text-amber-800">Pollination Power</h3>
@@ -357,7 +359,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
               
               <!-- Fact 5 -->
-              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500">
                 <div class="text-center mb-4">
                   <div class="text-5xl mb-3">🏠</div>
                   <h3 class="text-2xl font-bold text-amber-800">Hexagonal Engineering</h3>
@@ -366,7 +368,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
               
               <!-- Fact 6 -->
-              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500">
                 <div class="text-center mb-4">
                   <div class="text-5xl mb-3">⏱️</div>
                   <h3 class="text-2xl font-bold text-amber-800">Wing Speed</h3>
@@ -375,7 +377,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
               
               <!-- Fact 7 -->
-              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500">
                 <div class="text-center mb-4">
                   <div class="text-5xl mb-3">👁️</div>
                   <h3 class="text-2xl font-bold text-amber-800">Five Eyes</h3>
@@ -384,7 +386,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
               
               <!-- Fact 8 -->
-              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500">
                 <div class="text-center mb-4">
                   <div class="text-5xl mb-3">🌡️</div>
                   <h3 class="text-2xl font-bold text-amber-800">Temperature Control</h3>
@@ -393,7 +395,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
               
               <!-- Fact 9 -->
-              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500">
                 <div class="text-center mb-4">
                   <div class="text-5xl mb-3">🌍</div>
                   <h3 class="text-2xl font-bold text-amber-800">Global Impact</h3>
@@ -402,7 +404,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
               
               <!-- Fact 10 -->
-              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500" style="width: calc(33.333% - 21px);">
+              <div class="facts-carousel-fact flex-shrink-0 bg-amber-50 rounded-xl p-8 transition-all duration-500">
                 <div class="text-center mb-4">
                   <div class="text-5xl mb-3">🍯</div>
                   <h3 class="text-2xl font-bold text-amber-800">Ancient Sweetener</h3>
@@ -478,6 +480,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .facts-carousel-dot.active {
       background-color: #f59e0b;
       width: 2rem;
+    }
+
+    /* Responsive facts carousel widths */
+    .facts-carousel-fact {
+      width: calc(33.333% - 21px);
+    }
+
+    @media (max-width: 768px) {
+      .facts-carousel-fact {
+        width: 100%;
+      }
     }
   </style>
 
@@ -658,23 +671,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const factsPrevBtn = document.getElementById('facts-prev-btn');
     const factsNextBtn = document.getElementById('facts-next-btn');
     const totalFactsSlides = factsItems.length;
-    const maxSlide = totalFactsSlides - 3;
+
+    function getVisibleFactsCount() {
+      return window.innerWidth <= 768 ? 1 : 3;
+    }
+
+    function getMaxFactsSlide() {
+      return totalFactsSlides - getVisibleFactsCount();
+    }
 
     function updateFactsCarousel() {
       if (factsTrack && factsItems.length > 0) {
-        const factWidth = factsItems[0].offsetWidth;
-        const gap = 32; // 8 * 4px = 32px gap
-        const offset = currentFactsSlide * (factWidth + gap);
-        factsTrack.style.transform = `translateX(-${offset}px)`;
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+          // Mobile: show one fact at a time
+          factsTrack.style.transform = `translateX(-${currentFactsSlide * 100}%)`;
+        } else {
+          // Desktop: show three facts at a time
+          const factWidth = factsItems[0].offsetWidth;
+          const gap = 32; // 8 * 4px = 32px gap
+          const offset = currentFactsSlide * (factWidth + gap);
+          factsTrack.style.transform = `translateX(-${offset}px)`;
+        }
       }
       
-      // Update center fact highlight
+      // Update center fact highlight (desktop only)
       factsItems.forEach((fact, index) => {
-        const centerIndex = currentFactsSlide + 1; // Middle fact
-        if (index === centerIndex) {
-          fact.style.transform = 'scale(1.05)';
-          fact.style.boxShadow = '0 10px 30px rgba(245, 158, 11, 0.3)';
+        if (window.innerWidth > 768) {
+          const centerIndex = currentFactsSlide + 1; // Middle fact
+          if (index === centerIndex) {
+            fact.style.transform = 'scale(1.05)';
+            fact.style.boxShadow = '0 10px 30px rgba(245, 158, 11, 0.3)';
+          } else {
+            fact.style.transform = 'scale(1)';
+            fact.style.boxShadow = '';
+          }
         } else {
+          // Reset transforms on mobile
           fact.style.transform = 'scale(1)';
           fact.style.boxShadow = '';
         }
@@ -686,6 +720,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
 
     function nextFactsSlide() {
+      const maxSlide = getMaxFactsSlide();
       if (currentFactsSlide < maxSlide) {
         currentFactsSlide++;
       } else {
@@ -695,6 +730,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
 
     function prevFactsSlide() {
+      const maxSlide = getMaxFactsSlide();
       if (currentFactsSlide > 0) {
         currentFactsSlide--;
       } else {
@@ -712,6 +748,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     factsDots.forEach((dot, index) => {
       dot.addEventListener('click', () => {
+        const maxSlide = getMaxFactsSlide();
         currentFactsSlide = Math.min(index, maxSlide);
         updateFactsCarousel();
       });
@@ -729,15 +766,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       });
     }
 
-    updateFactsCarousel();
-  </script>
-</BaseLayout>Slide, 5000);
-      });
-    }
-
-    updateFactsCarousel();Slide, 5000);
-      });
-    }
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        currentFactsSlide = 0;
+        updateFactsCarousel();
+      }, 250);
+    });
 
     updateFactsCarousel();
   </script>
