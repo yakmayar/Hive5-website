@@ -1,8 +1,7 @@
 ---
-// The bee from the Hive Five logo, as a vector. Used in the menu bar and footer.
-// (The cursor version lives in global.css and the browser-tab icon in public/favicon.svg.)
+// The bee from the Hive Five logo. Used in the menu bar and footer.
+// (The cursor is public/images/bee-cursor.png; the browser-tab icons are
+// public/favicon.png and public/apple-touch-icon.png.)
 const { class: className = 'w-8 h-8' } = Astro.props;
-// Unique id so the bee can appear more than once on a page.
-const clipId = `bee-${Math.random().toString(36).slice(2, 8)}`;
 ---
-<svg class={className} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><clipPath id={clipId}><path d="M29 28 L47 32.5 L49 47 L34.5 46 Z"/></clipPath></defs><g clip-path={`url(#${clipId})`}><rect width="64" height="64" fill="#1a1a1a"/><circle cx="33" cy="48" r="11" fill="none" stroke="#f5b52e" stroke-width="3.6"/><circle cx="33" cy="48" r="17.5" fill="none" stroke="#f5b52e" stroke-width="3.6"/></g><path d="M25 21 C34 9 54 13 61 24.5 C54 33 37 33 25 21 Z" fill="#b9b5ad" stroke="#111" stroke-width="2.6" stroke-linejoin="round"/><path d="M26 21.5 L49.5 24" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><path d="M23.5 23 C15 32 16 49 27.5 58 C36.5 47 33 31 23.5 23 Z" fill="#c9c5bd" stroke="#111" stroke-width="2.6" stroke-linejoin="round"/><path d="M24 24 L25.5 47" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><circle cx="20.5" cy="19" r="8.3" fill="#111"/><path d="M18.5 11.5 C17.8 8.5 18.3 6.3 19.2 4.5" fill="none" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><circle cx="19.2" cy="4" r="1.7" fill="#111"/><path d="M13 16 C10.5 15.2 8 15.6 6 17.3" fill="none" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><circle cx="5.8" cy="17.5" r="1.7" fill="#111"/></svg>
+<img src="/images/bee-mark.png" alt="" width="128" height="128" class={className} decoding="async" />
