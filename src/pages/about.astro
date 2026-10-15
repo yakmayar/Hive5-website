@@ -1,101 +1,97 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const highlights = [
+  'Keeping bees since 2018',
+  'Midtown Raleigh, NC',
+  "Members of the NC & Wake County Beekeepers' Associations",
+];
 ---
 
-<BaseLayout title="About Us">
-  <div class="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 bee-cursor">
-    <!-- Animated Background Pattern -->
+<BaseLayout
+  title="About Us"
+  description="Meet the beekeepers behind Hive Five Apiary, a small backyard apiary in Midtown Raleigh, North Carolina, keeping bees since 2018."
+>
+  <div class="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 relative">
+    <!-- Honeycomb background pattern -->
     <div class="fixed inset-0 opacity-10 pointer-events-none">
       <div class="absolute inset-0 bg-pattern"></div>
     </div>
 
-    <!-- Hero Section with Logo and Title -->
-    <header class="relative flex flex-col items-center justify-start overflow-hidden pt-8 pb-0" style="min-height: 200px;">
-      <!-- Dark Overlay with smoother transition -->
-      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10"></div>
-      
-      <div class="relative z-20 w-full max-w-7xl px-8">
-        <div class="flex justify-between items-center">
-          <!-- Page Title on left -->
-          <div>
-            <h1 class="text-5xl font-bold text-amber-800 mb-2">About Us</h1>
-            <div class="w-24 h-1 bg-amber-500"></div>
-          </div>
-          
-          <!-- Logo on right -->
-          <img 
-            src="/images/logo.png" 
-            alt="Hive Five Apiary Logo" 
-            class="w-64 h-64 opacity-90 drop-shadow-xl"
-          />
-        </div>
-      </div>
-    </header>
+    <PageHeader
+      eyebrow="Hive Five Apiary"
+      title="About Us"
+      intro="Hobby beekeepers in Midtown Raleigh, keeping bees since 2018."
+    >
+      <ul class="mt-6 flex flex-wrap gap-2">
+        {highlights.map((h) => (
+          <li class="rounded-full bg-white/70 px-3.5 py-1.5 text-sm font-medium text-amber-900 ring-1 ring-amber-900/10 shadow-sm">{h}</li>
+        ))}
+      </ul>
+    </PageHeader>
 
-    <!-- Content Section 1 -->
-    <div class="container mx-auto px-4 py-8">
-      <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl p-8 mb-12">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 sm:pb-20 space-y-10 sm:space-y-12">
+      <!-- Section 1: text left, image right -->
+      <section class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg ring-1 ring-amber-900/5 p-6 sm:p-10">
+        <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div>
-            <h2 class="text-3xl font-bold text-amber-900 mb-4">Our Beekeeping Journey</h2>
-            <p class="text-gray-700 text-lg mb-4 leading-relaxed">
-              Welcome to Hive Five Apiary! We are passionate hobby beekeepers located in Midtown Raleigh, North Carolina. Our journey into beekeeping began in 2018 when I took a series of classes offered through an NC State grant for the high school where I worked. We wanted to transform our suburban yard into a little homestead, starting with expanding our garden, getting chickens, and rethinking our approach to yard maintenance.
-            </p>
-            <p class="text-gray-700 text-lg mb-4 leading-relaxed">
-              We had a fascination with honey bees and wanted to help our community wildlife flourish. While beekeeping is a significant investment, it has grown into a rewarding practice that connects us with nature and our community.
-            </p>
-            <p class="text-gray-700 text-lg leading-relaxed">
-              Every ounce of honey the bees collect tells a story of the flowers they visited, the seasons they weathered, and the care we put into maintaining healthy, thriving hives. We believe in sustainable beekeeping practices that prioritize the wellbeing of our bees while sharing the fruits of their labor with our neighbors.
-            </p>
+            <h2 class="text-3xl sm:text-4xl font-semibold text-amber-900 mb-5">Our Beekeeping Journey</h2>
+            <div class="space-y-4 text-gray-700 text-lg leading-relaxed">
+              <p>
+                Welcome to Hive Five Apiary! We are passionate hobby beekeepers located in Midtown Raleigh, North Carolina. Our journey into beekeeping began in 2018 when I took a series of classes offered through an NC State grant for the high school where I worked.
+              </p>
+              <p>
+                We wanted to transform our suburban yard into a little homestead, starting with expanding our garden, getting chickens, and rethinking our approach to yard maintenance.
+              </p>
+              <p>
+                We had a fascination with honey bees and wanted to help our community wildlife flourish. While beekeeping is a significant investment, it has grown into a rewarding practice that connects us with nature and our community.
+              </p>
+              <p>
+                Every ounce of honey the bees collect tells a story of the flowers they visited, the seasons they weathered, and the care we put into maintaining healthy, thriving hives. We believe in sustainable beekeeping practices that prioritize the wellbeing of our bees while sharing the fruits of their labor with our neighbors.
+              </p>
+            </div>
           </div>
-          <div class="rounded-2xl overflow-hidden shadow-lg">
-            <img 
-              src="/images/hex2.jpg" 
-              alt="Beekeeping" 
-              class="w-full h-[32rem] object-cover"
+          <div class="overflow-hidden rounded-2xl shadow-md ring-1 ring-amber-900/10 bg-amber-100">
+            <img
+              src="/images/hex2.jpg"
+              alt="A beekeeper and a young helper in bee suits checking a frame together"
+              loading="lazy"
+              decoding="async"
+              class="w-full aspect-[4/3] md:aspect-square object-cover"
             />
           </div>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <!-- Content Section 2 -->
-    <div class="container mx-auto px-4 py-8 pb-16">
-      <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl p-8">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <div class="rounded-2xl overflow-hidden shadow-lg order-2 md:order-1">
-            <img 
-              src="/images/hex1.jpg" 
-              alt="Our Apiary" 
-              class="w-full h-[32rem] object-cover"
+      <!-- Section 2: image left, text right (text first on mobile) -->
+      <section class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg ring-1 ring-amber-900/5 p-6 sm:p-10">
+        <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div class="overflow-hidden rounded-2xl shadow-md ring-1 ring-amber-900/10 bg-amber-100 order-2 md:order-1">
+            <img
+              src="/images/hex1.jpg"
+              alt="Our backyard apiary of painted hives on a gravel bed"
+              loading="lazy"
+              decoding="async"
+              class="w-full aspect-[4/3] md:aspect-square object-cover"
             />
           </div>
           <div class="order-1 md:order-2">
-            <h2 class="text-3xl font-bold text-amber-900 mb-4">Local & Sustainable</h2>
-            <p class="text-gray-700 text-lg mb-4 leading-relaxed">
-              As urban beekeepers in Raleigh, we're proud to contribute to the local ecosystem. Our bees forage on the diverse flora of the North Hills area, creating honey with unique flavors that reflect our neighborhood's botanical diversity.
-            </p>
-            <p class="text-gray-700 text-lg mb-4 leading-relaxed">
-              We practice natural beekeeping methods, minimizing intervention and letting the bees do what they do best. Our small-scale operation allows us to give each hive the individual attention it deserves, ensuring healthy colonies and the highest quality honey for our community.
-            </p>
-            <p class="text-gray-700 text-lg leading-relaxed">
-              We are active members of the North Carolina and Wake County Beekeepers' Associations, as well as various beekeeping Facebook groups. We enjoy connecting with other beekeepers in the area, learning from their experience, and sharing amazing facts about how honey bees operate.
-            </p>
+            <h2 class="text-3xl sm:text-4xl font-semibold text-amber-900 mb-5">Local &amp; Sustainable</h2>
+            <div class="space-y-4 text-gray-700 text-lg leading-relaxed">
+              <p>
+                As urban beekeepers in Raleigh, we're proud to contribute to the local ecosystem. Our bees forage on the diverse flora of the North Hills area, creating honey with unique flavors that reflect our neighborhood's botanical diversity.
+              </p>
+              <p>
+                We practice natural beekeeping methods, minimizing intervention and letting the bees do what they do best. Our small-scale operation allows us to give each hive the individual attention it deserves, ensuring healthy colonies and the highest quality honey for our community.
+              </p>
+              <p>
+                We are active members of the North Carolina and Wake County Beekeepers' Associations, as well as various beekeeping Facebook groups. We enjoy connecting with other beekeepers in the area, learning from their experience, and sharing amazing facts about how honey bees operate.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   </div>
-
-  <style>
-    .bee-cursor,
-    .bee-cursor * {
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22><text y=%2232%22 font-size=%2232%22>🐝</text></svg>') 20 20, auto !important;
-    }
-
-    .bg-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='%23f59e0b' fill-opacity='0.3' stroke='%23f59e0b' stroke-width='1'/%3E%3C/svg%3E");
-      background-size: 60px 60px;
-    }
-  </style>
 </BaseLayout>

@@ -1,6 +1,36 @@
 ---
+import '@fontsource-variable/fraunces/opsz.css';
+import '@fontsource-variable/inter';
 import '../styles/global.css';
-const { title, description } = Astro.props;
+import BeeMark from '../components/BeeMark.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title,
+  description = 'Hive Five Apiary is a small backyard apiary in Midtown Raleigh, North Carolina, producing raw local honey, creamed honey and beeswax goods.',
+  image = '/images/logo.png',
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://hive5apiary.us');
+const canonical = new URL(Astro.url.pathname, site);
+const ogImage = new URL(image, site);
+const fullTitle = title === 'Home' ? 'Hive Five Apiary | Local Honey from Midtown Raleigh' : `${title} | Hive Five Apiary`;
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/bees', label: 'Our Bees' },
+  { href: '/products', label: 'Products' },
+  { href: '/contact', label: 'Contact' },
+];
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+const year = new Date().getFullYear();
 ---
 
 <!DOCTYPE html>
@@ -8,56 +38,104 @@ const { title, description } = Astro.props;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title} | Hive Five Apiary</title>
+  <title>{fullTitle}</title>
   <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <style>
-    body,
-    body * {
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22><text y=%2232%22 font-size=%2232%22>🐝</text></svg>') 20 20, auto !important;
-    }
-  </style>
+  <meta name="theme-color" content="#111827">
+
+  <!-- Link previews (iMessage, Facebook, Slack, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hive Five Apiary">
+  <meta property="og:title" content={fullTitle}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:image" content={ogImage}>
+  <meta name="twitter:card" content="summary">
 </head>
-<body class="bg-amber-50 text-gray-900">
-  <nav class="bg-gray-900 shadow-md sticky top-0 z-50">
+<body class="site bg-amber-50 text-gray-900 font-sans">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-amber-400 focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-full">Skip to content</a>
+
+  <nav class="bg-gray-900 shadow-md sticky top-0 z-50" aria-label="Main">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-24">
-        <a href="/" class="flex items-center space-x-2">
-          <span class="text-2xl">🐝</span>
-          <span class="text-xl font-bold text-amber-400">Hive Five Apiary</span>
+      <div class="flex justify-between items-center h-20">
+        <a href="/" class="flex items-center gap-3">
+          <span class="grid place-items-center w-11 h-11 rounded-full bg-amber-50 ring-2 ring-amber-400/70 shadow-sm">
+            <BeeMark class="w-8 h-8" />
+          </span>
+          <span class="font-display text-xl font-semibold text-amber-400 tracking-tight">Hive Five Apiary</span>
         </a>
-        <div class="hidden md:flex space-x-8">
-          <a href="/" class="text-gray-300 hover:text-amber-400 transition">Home</a>
-          <a href="/about" class="text-gray-300 hover:text-amber-400 transition">About</a>
-          <a href="/bees" class="text-gray-300 hover:text-amber-400 transition">Our Bees</a>
-          <a href="/products" class="text-gray-300 hover:text-amber-400 transition">Products</a>
-          <a href="/contact" class="text-gray-300 hover:text-amber-400 transition">Contact</a>
+        <div class="hidden md:flex items-center gap-1">
+          {links.map((l) => (
+            <a
+              href={l.href}
+              aria-current={isCurrent(l.href) ? 'page' : undefined}
+              class:list={[
+                'px-4 py-2 rounded-full text-[0.95rem] transition-colors',
+                isCurrent(l.href) ? 'bg-amber-400/15 text-amber-300' : 'text-gray-300 hover:text-amber-300',
+              ]}
+            >{l.label}</a>
+          ))}
         </div>
-        <button id="mobile-menu-btn" class="md:hidden text-gray-300" aria-label="Toggle menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="mobile-menu-btn" class="md:hidden text-gray-300 p-2 -mr-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
     </div>
     <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-700">
-      <div class="px-4 py-3 space-y-3">
-        <a href="/" class="block text-gray-300 hover:text-amber-400">Home</a>
-        <a href="/about" class="block text-gray-300 hover:text-amber-400">About</a>
-        <a href="/bees" class="block text-gray-300 hover:text-amber-400">Our Bees</a>
-        <a href="/products" class="block text-gray-300 hover:text-amber-400">Products</a>
-        <a href="/contact" class="block text-gray-300 hover:text-amber-400">Contact</a>
+      <div class="px-4 py-3 space-y-1">
+        {links.map((l) => (
+          <a
+            href={l.href}
+            aria-current={isCurrent(l.href) ? 'page' : undefined}
+            class:list={['block px-3 py-2 rounded-lg', isCurrent(l.href) ? 'bg-amber-400/15 text-amber-300' : 'text-gray-300 hover:text-amber-300']}
+          >{l.label}</a>
+        ))}
       </div>
     </div>
   </nav>
 
-  <main>
+  <main id="main">
     <slot />
   </main>
 
-  <footer class="bg-gray-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 py-8 text-center">
-      <p class="text-gray-400 text-sm">&copy; {new Date().getFullYear()} Hive Five Apiary. All rights reserved.</p>
+  <footer class="bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid gap-10 md:grid-cols-3">
+      <div>
+        <a href="/" class="flex items-center gap-3 mb-4">
+          <span class="grid place-items-center w-11 h-11 rounded-full bg-amber-50 ring-2 ring-amber-400/70">
+            <BeeMark class="w-8 h-8" />
+          </span>
+          <span class="font-display text-xl font-semibold text-amber-400">Hive Five Apiary</span>
+        </a>
+        <p class="text-sm leading-relaxed text-gray-400 max-w-xs">
+          Backyard beekeeping and raw local honey from Midtown Raleigh, North Carolina.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-sans text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">Explore</h2>
+        <ul class="space-y-2 text-sm">
+          {links.map((l) => (
+            <li><a href={l.href} class="hover:text-amber-300 transition-colors">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-sans text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">Get in touch</h2>
+        <ul class="space-y-2 text-sm">
+          <li>Midtown Raleigh, NC</li>
+          <li><a href="mailto:hive5apiary@gmail.com" class="hover:text-amber-300 transition-colors">hive5apiary@gmail.com</a></li>
+          <li><a href="/contact" class="hover:text-amber-300 transition-colors">Send us a message</a></li>
+          <li class="pt-2 text-gray-400">NC Certified Honey Producer</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <p class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-xs text-gray-500">&copy; {year} Hive Five Apiary. All rights reserved.</p>
     </div>
   </footer>
 
@@ -65,7 +143,9 @@ const { title, description } = Astro.props;
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     btn?.addEventListener('click', () => {
-      menu?.classList.toggle('hidden');
+      const open = menu?.classList.toggle('hidden') === false;
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
   </script>
 </body>

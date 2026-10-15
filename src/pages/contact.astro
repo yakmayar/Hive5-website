@@ -1,46 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
 ---
 
-<BaseLayout title="Contact">
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Hive Five Apiary about local honey, beeswax products, or backyard beekeeping in Raleigh, NC."
+>
   <!-- Load Cloudflare Turnstile Script -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   
-  <div class="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 bee-cursor">
-    <!-- Animated Background Pattern -->
+  <div class="relative min-h-screen overflow-x-clip bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50">
+    <!-- Honeycomb background pattern -->
     <div class="fixed inset-0 opacity-10 pointer-events-none">
       <div class="absolute inset-0 bg-pattern"></div>
     </div>
 
-    <!-- Hero Section with Logo and Title -->
-    <header class="relative flex flex-col items-center justify-start overflow-hidden pt-8 pb-0" style="min-height: 200px;">
-      <!-- Dark Overlay with smoother transition -->
-      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10"></div>
-      
-      <div class="relative z-20 w-full max-w-7xl px-8">
-        <div class="flex justify-between items-center">
-          <!-- Page Title on left -->
-          <div>
-            <h1 class="text-5xl font-bold text-amber-800 mb-2">Contact Us</h1>
-            <div class="w-24 h-1 bg-amber-500"></div>
-          </div>
-          
-          <!-- Logo on right -->
-          <img 
-            src="/images/logo.png" 
-            alt="Hive Five Apiary Logo" 
-            class="w-64 h-64 opacity-90 drop-shadow-xl"
-          />
-        </div>
-      </div>
-    </header>
+    <PageHeader
+      eyebrow="Say hello"
+      title="Contact Us"
+      intro="If you have questions about our honey, want to learn more about beekeeping, or would like to purchase a product, we would love to hear from you."
+    />
 
     <!-- Contact Form Section -->
-    <div class="container mx-auto px-4 py-8 pb-16">
-      <div class="max-w-2xl mx-auto">
-        <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl p-8 mb-8">
-          <p class="text-gray-700 text-lg mb-8 text-center">
-            If you have questions about our honey, want to learn more about beekeeping, or would like to purchase a product, we would love to hear from you. Please fill out the form and we typically respond in less than 24 hours.
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 sm:pb-20">
+      <div class="grid gap-8 lg:grid-cols-12 items-start">
+        <div class="lg:col-span-8 bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg ring-1 ring-amber-900/5 p-6 sm:p-10">
+          <p class="text-gray-700 text-lg mb-8">
+            Please fill out the form and we typically respond in less than 24 hours.
           </p>
 
           <form id="contact-form" class="space-y-6">
@@ -59,17 +46,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <!-- Hidden Timestamp Field - Records when form was loaded -->
             <input type="hidden" id="form-timestamp" name="form-timestamp" value="" />
 
+            <div class="grid gap-6 sm:grid-cols-2">
             <!-- Name Field -->
             <div>
               <label for="name" class="block text-amber-900 font-semibold mb-2">
-                Name *
+                Name <span class="text-amber-600" aria-hidden="true">*</span>
               </label>
               <input 
                 type="text" 
                 id="name" 
                 name="name" 
                 required
-                class="w-full px-4 py-3 rounded-lg border border-amber-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+                class="field"
                 placeholder="Your name"
               />
             </div>
@@ -77,18 +65,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <!-- Email Field -->
             <div>
               <label for="email" class="block text-amber-900 font-semibold mb-2">
-                Email *
+                Email <span class="text-amber-600" aria-hidden="true">*</span>
               </label>
               <input 
                 type="email" 
                 id="email" 
                 name="email" 
                 required
-                class="w-full px-4 py-3 rounded-lg border border-amber-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+                class="field"
                 placeholder="your.email@example.com"
               />
             </div>
 
+            </div>
+
+            <div class="grid gap-6 sm:grid-cols-2">
             <!-- Phone Field (Optional) -->
             <div>
               <label for="phone" class="block text-amber-900 font-semibold mb-2">
@@ -98,7 +89,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 type="tel" 
                 id="phone" 
                 name="phone"
-                class="w-full px-4 py-3 rounded-lg border border-amber-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+                class="field"
                 placeholder="(555) 123-4567"
               />
             </div>
@@ -106,65 +97,106 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <!-- Subject Field -->
             <div>
               <label for="subject" class="block text-amber-900 font-semibold mb-2">
-                Subject *
+                Subject <span class="text-amber-600" aria-hidden="true">*</span>
               </label>
               <input 
                 type="text" 
                 id="subject" 
                 name="subject" 
                 required
-                class="w-full px-4 py-3 rounded-lg border border-amber-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+                class="field"
                 placeholder="What's this about?"
               />
+            </div>
+
             </div>
 
             <!-- Message Field -->
             <div>
               <label for="message" class="block text-amber-900 font-semibold mb-2">
-                Message *
+                Message <span class="text-amber-600" aria-hidden="true">*</span>
               </label>
               <textarea 
                 id="message" 
                 name="message" 
                 required
                 rows="6"
-                class="w-full px-4 py-3 rounded-lg border border-amber-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all resize-vertical"
+                class="field resize-y"
                 placeholder="Tell us what's on your mind..."
               ></textarea>
             </div>
 
             <!-- Cloudflare Turnstile Widget -->
-            <div class="flex justify-center">
+            <div class="flex justify-center sm:justify-start min-h-[65px]">
               <div class="cf-turnstile" data-sitekey="0x4AAAAAAB7dIJWlrAp1hIuw"></div>
             </div>
 
             <!-- Submit Button -->
-            <div class="text-center">
+            <div class="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p class="text-sm text-gray-500"><span class="text-amber-600" aria-hidden="true">*</span> Required</p>
               <button 
                 type="submit"
-                class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-4 px-12 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                class="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 disabled:opacity-60 text-white font-semibold py-4 px-10 rounded-full transition-colors duration-300 shadow-lg shadow-amber-600/20"
               >
                 Send Message
               </button>
             </div>
 
             <!-- Success/Error Messages -->
-            <div id="form-message" class="hidden text-center p-4 rounded-lg"></div>
+            <div id="form-message" class="hidden text-center p-4 rounded-xl"></div>
           </form>
         </div>
+
+        <!-- Side panel -->
+        <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+          <div class="bg-amber-100/80 backdrop-blur-sm rounded-3xl shadow-lg ring-1 ring-amber-900/5 p-6 sm:p-8">
+            <div class="flex items-start gap-4">
+              <span class="hex-icon" aria-hidden="true">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" /></svg>
+              </span>
+              <div class="min-w-0">
+                <h2 class="text-xl font-semibold text-amber-900">Email us directly</h2>
+                <a href="mailto:hive5apiary@gmail.com" class="mt-1 inline-block break-all font-medium text-amber-700 underline decoration-amber-300 underline-offset-4 hover:text-amber-900 hover:decoration-amber-500">hive5apiary@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </aside>
       </div>
-    </div>
+    </section>
   </div>
 
   <style>
-    .bee-cursor,
-    .bee-cursor * {
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22><text y=%2232%22 font-size=%2232%22>🐝</text></svg>') 20 20, auto !important;
+    .field {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid #fcd34d80;
+      background: rgb(255 255 255 / 0.85);
+      color: #1f2937;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
     }
-
-    .bg-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='%23f59e0b' fill-opacity='0.3' stroke='%23f59e0b' stroke-width='1'/%3E%3C/svg%3E");
-      background-size: 60px 60px;
+    .field::placeholder {
+      color: #9ca3af;
+    }
+    .field:hover {
+      border-color: #fbbf24;
+    }
+    .field:focus {
+      border-color: #f59e0b;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgb(251 191 36 / 0.3);
+    }
+    .hex-icon {
+      display: grid;
+      flex: none;
+      place-items: center;
+      width: 2.75rem;
+      height: 3.1rem;
+      background: #f59e0b;
+      color: #fff;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     }
   </style>
 
