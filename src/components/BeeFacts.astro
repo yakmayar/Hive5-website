@@ -1,0 +1,250 @@
+---
+// "Fascinating Honey Bee Facts" carousel.
+// Icons are inlined from Lucide (https://lucide.dev, ISC license), so no extra
+// dependency is needed and they inherit the amber theme via `currentColor`.
+
+const icons: Record<string, string> = {
+  droplet: '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
+  route: '<circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/>',
+  infinity: '<path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/>',
+  flower: '<path d="M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1"/><circle cx="12" cy="8" r="2"/><path d="M12 10v12"/><path d="M12 22c4.2 0 7-1.667 7-5-4.2 0-7 1.667-7 5Z"/><path d="M12 22c-4.2 0-7-1.667-7-5 4.2 0 7 1.667 7 5Z"/>',
+  hexagon: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>',
+  wind: '<path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/>',
+  eye: '<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/>',
+  thermometer: '<path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/>',
+  globe: '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>',
+  hourglass: '<path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/>',
+};
+
+const facts = [
+  { icon: 'droplet', stat: '1/12', unit: 'tsp', title: "One Bee's Lifetime Production", text: 'A single worker bee produces only about 1/12 of a teaspoon of honey in her entire lifetime!' },
+  { icon: 'route', stat: '3', unit: 'miles', title: 'Flight Distance', text: 'Bees will fly up to 3 miles from their hive to forage for nectar and pollen.' },
+  { icon: 'infinity', stat: 'Figure 8', unit: '', title: 'Waggle Dance', text: 'Bees communicate the location of flowers through a "waggle dance" that indicates direction and distance.' },
+  { icon: 'flower', stat: '1/3', unit: 'of our food', title: 'Pollination Power', text: 'Honey bees are responsible for pollinating approximately one-third of the food we eat!' },
+  { icon: 'hexagon', stat: '6', unit: 'sides', title: 'Hexagonal Engineering', text: "Bees build hexagonal cells because it's the most efficient use of wax and provides maximum strength." },
+  { icon: 'wind', stat: '200', unit: 'beats/sec', title: 'Wing Speed', text: "A honey bee's wings beat about 200 times per second, creating their distinctive buzz!" },
+  { icon: 'eye', stat: '5', unit: 'eyes', title: 'Five Eyes', text: 'Honey bees have five eyes—two large compound eyes and three smaller simple eyes on top of their head!' },
+  { icon: 'thermometer', stat: '93–95', unit: '°F', title: 'Temperature Control', text: 'Bees maintain their hive at a constant 93–95°F by fanning their wings to cool it or clustering together to warm it.' },
+  { icon: 'globe', stat: '20,000+', unit: 'species', title: 'Global Impact', text: 'There are over 20,000 species of bees worldwide, but only 7–8 species are true honey bees!' },
+  { icon: 'hourglass', stat: '3,000', unit: 'years', title: 'Ancient Sweetener', text: 'Honey never spoils! Archaeologists have found 3,000-year-old honey in Egyptian tombs that was still edible.' },
+];
+---
+
+<div class="px-4 sm:px-8 py-8 pb-16">
+  <div class="facts-panel bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl p-5 sm:p-8">
+    <h2 class="text-3xl font-bold text-amber-900 mb-2 text-center">Fascinating Honey Bee Facts</h2>
+    <p class="text-center text-amber-800/70 mb-8">Ten things we love about the bees in our backyard.</p>
+
+    <div class="relative sm:px-12">
+      <div class="facts-carousel-container overflow-hidden py-3">
+        <div class="facts-carousel-track flex transition-transform duration-500 ease-in-out gap-8">
+          {facts.map((fact, i) => (
+            <article class="facts-carousel-fact fact-card flex-shrink-0">
+              <div class="flex items-center justify-between mb-6">
+                <span class="fact-badge" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={icons[fact.icon]} />
+                </span>
+                <span class="fact-index">{String(i + 1).padStart(2, '0')}</span>
+              </div>
+              <p class="fact-stat">
+                {fact.stat}
+                {fact.unit && <span class="fact-unit">{fact.unit}</span>}
+              </p>
+              <h3 class="fact-title">{fact.title}</h3>
+              <p class="fact-text">{fact.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <button
+        id="facts-prev-btn"
+        class="hidden sm:block absolute left-[-20px] top-1/2 -translate-y-1/2 bg-amber-500/90 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+        aria-label="Previous fact"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+
+      <button
+        id="facts-next-btn"
+        class="hidden sm:block absolute right-[-20px] top-1/2 -translate-y-1/2 bg-amber-500/90 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+        aria-label="Next fact"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex justify-center gap-2 mt-6">
+      {facts.map((_, i) => (
+        <button class="facts-carousel-dot w-3 h-3 rounded-full bg-amber-300 transition-all duration-300" data-index={i} aria-label={`Show fact ${i + 1}`}></button>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .fact-card {
+    width: calc(33.333% - 21.34px);
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+    background: #fff;
+    border: 1px solid rgb(253 230 138 / 0.8); /* amber-200 */
+    border-radius: 1.25rem;
+    box-shadow: 0 1px 2px rgb(120 53 15 / 0.05), 0 4px 16px rgb(120 53 15 / 0.06);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+  }
+
+  .fact-card.is-featured {
+    border-color: #f59e0b;
+    box-shadow: 0 2px 4px rgb(120 53 15 / 0.06), 0 12px 32px rgb(245 158 11 / 0.22);
+  }
+
+  .fact-badge {
+    display: inline-grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    color: #92400e; /* amber-800 */
+    background: linear-gradient(145deg, #fef3c7, #fcd34d);
+    clip-path: polygon(50% 0, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+  }
+
+  .fact-badge svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .fact-index {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: rgb(180 83 9 / 0.45); /* amber-700 */
+    font-variant-numeric: tabular-nums;
+  }
+
+  .fact-stat {
+    font-size: 2.5rem;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #b45309; /* amber-700 */
+    margin-bottom: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .fact-unit {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: #d97706; /* amber-600 */
+    margin-left: 0.35rem;
+  }
+
+  .fact-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+
+  .fact-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #4b5563;
+  }
+
+  .facts-carousel-dot.active {
+    background-color: #f59e0b;
+    width: 2rem;
+  }
+
+  .facts-panel {
+    max-width: 83vw;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .fact-card {
+      width: 100%;
+      padding: 1.5rem;
+    }
+
+    .facts-panel {
+      max-width: none;
+    }
+
+    .fact-stat {
+      font-size: 2.25rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    let current = 0;
+    const items = document.querySelectorAll('.facts-carousel-fact');
+    const dots = document.querySelectorAll('.facts-carousel-dot');
+    const track = document.querySelector('.facts-carousel-track');
+    const prevBtn = document.getElementById('facts-prev-btn');
+    const nextBtn = document.getElementById('facts-next-btn');
+    const container = document.querySelector('.facts-carousel-container');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const isMobile = () => window.innerWidth <= 768;
+    const maxSlide = () => items.length - (isMobile() ? 1 : 3);
+
+    function update() {
+      if (!track || items.length === 0) return;
+      const offset = current * (items[0].offsetWidth + 32); // 32px = gap-8
+      track.style.transform = `translateX(-${offset}px)`;
+
+      const center = isMobile() ? current : current + 1;
+      items.forEach((item, i) => item.classList.toggle('is-featured', !isMobile() && i === center));
+
+      const max = maxSlide();
+      dots.forEach((dot, i) => {
+        dot.style.display = i > max ? 'none' : '';
+        dot.classList.toggle('active', i === current);
+      });
+    }
+
+    const next = () => { current = current < maxSlide() ? current + 1 : 0; update(); };
+    const prev = () => { current = current > 0 ? current - 1 : maxSlide(); update(); };
+
+    nextBtn?.addEventListener('click', next);
+    prevBtn?.addEventListener('click', prev);
+    dots.forEach((dot, i) => dot.addEventListener('click', () => {
+      current = Math.min(i, maxSlide());
+      update();
+    }));
+
+    // Swipe on touch screens
+    let touchX = null;
+    container?.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; clearInterval(timer); }, { passive: true });
+    container?.addEventListener('touchend', (e) => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+      touchX = null;
+    });
+
+    let timer = reduceMotion ? null : setInterval(next, 5000);
+    container?.addEventListener('mouseenter', () => clearInterval(timer));
+    container?.addEventListener('mouseleave', () => {
+      if (!reduceMotion) timer = setInterval(next, 5000);
+    });
+
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => { current = 0; update(); }, 250);
+    });
+
+    update();
+  })();
+</script>
