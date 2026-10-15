@@ -1,0 +1,89 @@
+---
+// Short looping hive video with its caption inside the frame.
+// - Only downloads when scrolled near (saves data on phones).
+// - Plays while on screen, pauses when scrolled away.
+// - Pause/play button for anyone who doesn't want motion; visitors who
+//   prefer reduced motion get it paused by default.
+
+interface Props {
+  src: string;
+  caption: string;
+  label?: string;       // accessible description of what the video shows
+  poster?: string;      // optional still image shown before it loads
+  maxHeight?: string;   // CSS max-height for tall (portrait) videos
+  class?: string;
+}
+
+const { src, caption, label = caption, poster, maxHeight = '32rem', class: className = '' } = Astro.props;
+---
+
+<figure
+  class:list={['video-card relative overflow-hidden rounded-2xl bg-stone-900 shadow-xl ring-1 ring-black/5', className]}
+  data-video-card
+>
+  <video
+    class="block w-full h-auto mx-auto object-contain"
+    style={`max-height: ${maxHeight};`}
+    muted
+    loop
+    playsinline
+    preload="none"
+    poster={poster}
+    aria-label={label}
+  >
+    <source src={src} type="video/mp4" />
+  </video>
+
+  <figcaption class="pointer-events-none absolute left-3 bottom-3 max-w-[75%] rounded-full bg-black/55 px-3.5 py-1.5 text-sm font-medium text-white backdrop-blur-md first-letter:uppercase">
+    {caption}
+  </figcaption>
+
+  <button
+    type="button"
+    data-toggle
+    class="absolute right-3 bottom-3 grid h-9 w-9 place-items-center rounded-full bg-black/55 text-white backdrop-blur-md transition hover:bg-black/75"
+    aria-label="Pause video"
+  >
+    <svg data-icon-pause class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+    <svg data-icon-play class="hidden h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" /></svg>
+  </button>
+</figure>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLElement>('[data-video-card]').forEach((card) => {
+    const video = card.querySelector('video');
+    const btn = card.querySelector<HTMLButtonElement>('[data-toggle]');
+    if (!video || !btn) return;
+
+    // Respect the visitor's choice: once they pause, scrolling won't restart it.
+    let userPaused = reduceMotion;
+
+    const render = () => {
+      const playing = !video.paused;
+      btn.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
+      btn.querySelector('[data-icon-pause]')?.classList.toggle('hidden', !playing);
+      btn.querySelector('[data-icon-play]')?.classList.toggle('hidden', playing);
+    };
+    video.addEventListener('play', render);
+    video.addEventListener('pause', render);
+
+    btn.addEventListener('click', () => {
+      if (video.paused) {
+        userPaused = false;
+        video.play().catch(() => {});
+      } else {
+        userPaused = true;
+        video.pause();
+      }
+    });
+
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !userPaused) video.play().catch(() => {});
+      else if (!entry.isIntersecting) video.pause();
+    }, { threshold: 0.35 }).observe(card);
+
+    render();
+  });
+</script>
