@@ -6,17 +6,17 @@ import BeeFacts from '../components/BeeFacts.astro';
 
 // Small honeycomb photos tucked against each video's corner.
 const colonyPhotos = [
-  { src: '/images/our-colonies.JPG', alt: 'Painted hive boxes with feeder jars at their entrances', x: 96, y: 0 },
-  { src: '/images/hex3.jpg', alt: 'Bees on a frame of capped honey and brood', x: 196, y: 86 },
+  { src: '/images/our-colonies.JPG', alt: 'Painted hive boxes with feeder jars at their entrances', x: 121, y: 0 },
+  { src: '/images/hex3.jpg', alt: 'Bees on a frame of capped honey and brood', x: 247, y: 108 },
 ];
 const queenPhotos = [
-  { src: '/images/our-queens1.jpg', alt: 'A queen marked with a red dot among her workers on the brood comb', x: 0, y: 86 },
-  { src: '/images/our-queens2.jpg', alt: 'A long-bodied queen marked with a red dot, surrounded by worker bees', x: 100, y: 0 },
-  { src: '/images/our-queens4.jpg', alt: 'A queen marked with a blue dot among her workers', x: 200, y: 86 },
+  { src: '/images/our-queens1.jpg', alt: 'A queen marked with a red dot among her workers on the brood comb', x: 0, y: 108 },
+  { src: '/images/our-queens2.jpg', alt: 'A long-bodied queen marked with a red dot, surrounded by worker bees', x: 126, y: 0 },
+  { src: '/images/our-queens4.jpg', alt: 'A queen marked with a blue dot among her workers', x: 252, y: 108 },
 ];
 const carePhotos = [
-  { src: '/images/care1.jpg', alt: 'Open hive box with bees covering the tops of the frames', x: 96, y: 0 },
-  { src: '/images/care2.jpg', alt: 'A frame of capped brood ringed by bees, lifted out during an inspection', x: 196, y: 86 },
+  { src: '/images/care1.jpg', alt: 'Open hive box with bees covering the tops of the frames', x: 121, y: 0 },
+  { src: '/images/care2.jpg', alt: 'A frame of capped brood ringed by bees, lifted out during an inspection', x: 247, y: 108 },
 ];
 ---
 
@@ -26,7 +26,6 @@ const carePhotos = [
 >
   <Hero
     title="Our bees"
-    intro="Meet the colonies, the queens, and the care behind every hive in our Midtown Raleigh backyard."
     image="/images/our-queens3.jpg"
     position="70% 40%"
   />
@@ -95,7 +94,7 @@ const carePhotos = [
   .flip > .prose { order: 2; }
   .body { margin-top: 1.4rem; }
 
-  .media { position: relative; width: 100%; max-width: 560px; justify-self: center; padding-bottom: 90px; }
+  .media { position: relative; width: 100%; max-width: 560px; justify-self: center; padding-bottom: 150px; }
   .media :global(.vid) { width: 82%; }
   .media.wide :global(.vid) { width: 92%; }
   .flip .media :global(.vid) { margin-left: auto; }
@@ -105,18 +104,19 @@ const carePhotos = [
   /* the pause button moves to the top corner so the tucked photos don't cover it */
   .media :global([data-toggle]) { top: 12px; bottom: auto; }
 
-  .tuck { position: absolute; right: 0; bottom: 0; width: 340px; height: 250px; pointer-events: none; }
-  .flip .tuck { right: auto; left: 0; }
-  .ring { position: absolute; width: 140px; height: 162px; clip-path: var(--hex); background: var(--color-light); pointer-events: auto; }
-  .ring img { position: absolute; inset: 6px; width: calc(100% - 12px); height: calc(100% - 12px); object-fit: cover; clip-path: var(--hex); }
+  .tuck { position: absolute; right: -90px; bottom: 0; width: 430px; height: 315px; pointer-events: none; }
+  .flip .tuck { right: auto; left: -90px; }
+  .ring { position: absolute; width: 176px; height: 203px; clip-path: var(--hex); background: var(--color-light); pointer-events: auto; }
+  .ring img { position: absolute; inset: 7px; width: calc(100% - 14px); height: calc(100% - 14px); object-fit: cover; clip-path: var(--hex); }
 
   .facts-space { padding-top: 30px; }
 
   @media (max-width: 900px) {
     .story { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 40px; }
     .flip > .prose { order: 0; }
-    .media { padding-bottom: 70px; }
-    .tuck { transform: scale(.72); transform-origin: bottom right; }
+    .media { padding-bottom: 90px; }
+    .tuck { right: 0; transform: scale(.6); transform-origin: bottom right; }
+    .flip .tuck { left: 0; }
     .flip .tuck { transform-origin: bottom left; }
   }
 </style>

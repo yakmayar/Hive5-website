@@ -59,6 +59,8 @@
 body.site,
 body.site * {
   cursor: url("/images/bee-cursor.png") 10 10, auto;
+  cursor: -webkit-image-set(url("/images/bee-cursor.png") 1x, url("/images/bee-cursor-2x.png") 2x) 10 10, auto;
+  cursor: image-set(url("/images/bee-cursor.png") 1x, url("/images/bee-cursor-2x.png") 2x) 10 10, auto;
 }
 
 body.site :is(a, button, summary, select, label[for], [role="button"]),
