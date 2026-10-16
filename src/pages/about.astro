@@ -1,97 +1,58 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHeader from '../components/PageHeader.astro';
-
-const highlights = [
-  'Keeping bees since 2018',
-  'Midtown Raleigh, NC',
-  "Members of the NC & Wake County Beekeepers' Associations",
-];
+import Hero from '../components/Hero.astro';
 ---
 
 <BaseLayout
   title="About Us"
   description="Meet the beekeepers behind Hive Five Apiary, a small backyard apiary in Midtown Raleigh, North Carolina, keeping bees since 2018."
 >
-  <div class="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 relative">
-    <!-- Honeycomb background pattern -->
-    <div class="fixed inset-0 opacity-10 pointer-events-none">
-      <div class="absolute inset-0 bg-pattern"></div>
+  <Hero
+    title="About us"
+    intro="Hobby beekeepers in Midtown Raleigh, keeping bees since 2018."
+    image="/images/hex1.jpg"
+    position="70% 50%"
+  />
+
+  <section class="wrap pair">
+    <div class="prose">
+      <h2 class="section-title">Our beekeeping journey</h2>
+      <ul class="chips"><li>Keeping bees since 2018</li><li>Midtown Raleigh, NC</li></ul>
+      <div class="body">
+        <p>Welcome to Hive Five Apiary! We are passionate hobby beekeepers located in Midtown Raleigh, North Carolina. Our journey into beekeeping began in 2018 when I took a series of classes offered through an NC State grant for the high school where I worked.</p>
+        <p>We wanted to transform our suburban yard into a little homestead, starting with expanding our garden, getting chickens, and rethinking our approach to yard maintenance.</p>
+        <p>We had a fascination with honey bees and wanted to help our community wildlife flourish. While beekeeping is a significant investment, it has grown into a rewarding practice that connects us with nature and our community.</p>
+        <p>Every ounce of honey the bees collect tells a story of the flowers they visited, the seasons they weathered, and the care we put into maintaining healthy, thriving hives. We believe in sustainable beekeeping practices that prioritize the wellbeing of our bees while sharing the fruits of their labor with our neighbors.</p>
+      </div>
     </div>
+    <img class="hex big" src="/images/hex2.jpg" alt="A beekeeper and a young helper in bee suits checking a frame together" loading="lazy" decoding="async" />
+  </section>
 
-    <PageHeader
-      eyebrow="Hive Five Apiary"
-      title="About Us"
-      intro="Hobby beekeepers in Midtown Raleigh, keeping bees since 2018."
-    >
-      <ul class="mt-6 flex flex-wrap gap-2">
-        {highlights.map((h) => (
-          <li class="rounded-full bg-white/70 px-3.5 py-1.5 text-sm font-medium text-amber-900 ring-1 ring-amber-900/10 shadow-sm">{h}</li>
-        ))}
-      </ul>
-    </PageHeader>
-
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 sm:pb-20 space-y-10 sm:space-y-12">
-      <!-- Section 1: text left, image right -->
-      <section class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg ring-1 ring-amber-900/5 p-6 sm:p-10">
-        <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div>
-            <h2 class="text-3xl sm:text-4xl font-semibold text-amber-900 mb-5">Our Beekeeping Journey</h2>
-            <div class="space-y-4 text-gray-700 text-lg leading-relaxed">
-              <p>
-                Welcome to Hive Five Apiary! We are passionate hobby beekeepers located in Midtown Raleigh, North Carolina. Our journey into beekeeping began in 2018 when I took a series of classes offered through an NC State grant for the high school where I worked.
-              </p>
-              <p>
-                We wanted to transform our suburban yard into a little homestead, starting with expanding our garden, getting chickens, and rethinking our approach to yard maintenance.
-              </p>
-              <p>
-                We had a fascination with honey bees and wanted to help our community wildlife flourish. While beekeeping is a significant investment, it has grown into a rewarding practice that connects us with nature and our community.
-              </p>
-              <p>
-                Every ounce of honey the bees collect tells a story of the flowers they visited, the seasons they weathered, and the care we put into maintaining healthy, thriving hives. We believe in sustainable beekeeping practices that prioritize the wellbeing of our bees while sharing the fruits of their labor with our neighbors.
-              </p>
-            </div>
-          </div>
-          <div class="overflow-hidden rounded-2xl shadow-md ring-1 ring-amber-900/10 bg-amber-100">
-            <img
-              src="/images/hex2.jpg"
-              alt="A beekeeper and a young helper in bee suits checking a frame together"
-              loading="lazy"
-              decoding="async"
-              class="w-full aspect-[4/3] md:aspect-square object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 2: image left, text right (text first on mobile) -->
-      <section class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg ring-1 ring-amber-900/5 p-6 sm:p-10">
-        <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div class="overflow-hidden rounded-2xl shadow-md ring-1 ring-amber-900/10 bg-amber-100 order-2 md:order-1">
-            <img
-              src="/images/hex1.jpg"
-              alt="Our backyard apiary of painted hives on a gravel bed"
-              loading="lazy"
-              decoding="async"
-              class="w-full aspect-[4/3] md:aspect-square object-cover"
-            />
-          </div>
-          <div class="order-1 md:order-2">
-            <h2 class="text-3xl sm:text-4xl font-semibold text-amber-900 mb-5">Local &amp; Sustainable</h2>
-            <div class="space-y-4 text-gray-700 text-lg leading-relaxed">
-              <p>
-                As urban beekeepers in Raleigh, we're proud to contribute to the local ecosystem. Our bees forage on the diverse flora of the North Hills area, creating honey with unique flavors that reflect our neighborhood's botanical diversity.
-              </p>
-              <p>
-                We practice natural beekeeping methods, minimizing intervention and letting the bees do what they do best. Our small-scale operation allows us to give each hive the individual attention it deserves, ensuring healthy colonies and the highest quality honey for our community.
-              </p>
-              <p>
-                We are active members of the North Carolina and Wake County Beekeepers' Associations, as well as various beekeeping Facebook groups. We enjoy connecting with other beekeepers in the area, learning from their experience, and sharing amazing facts about how honey bees operate.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+  <section class="wrap local">
+    <div class="panel">
+      <h2 class="section-title">Local &amp; sustainable</h2>
+      <ul class="chips"><li>Natural, minimal-intervention beekeeping</li><li>Members of the NC &amp; Wake County Beekeepers' Associations</li></ul>
+      <div class="cols prose">
+        <p>As urban beekeepers in Raleigh, we're proud to contribute to the local ecosystem. Our bees forage on the diverse flora of the North Hills area, creating honey with unique flavors that reflect our neighborhood's botanical diversity.</p>
+        <p>We practice natural beekeeping methods, minimizing intervention and letting the bees do what they do best. Our small-scale operation allows us to give each hive the individual attention it deserves, ensuring healthy colonies and the highest quality honey for our community.</p>
+        <p>We are active members of the North Carolina and Wake County Beekeepers' Associations, as well as various beekeeping Facebook groups. We enjoy connecting with other beekeepers in the area, learning from their experience, and sharing amazing facts about how honey bees operate.</p>
+      </div>
     </div>
-  </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .pair { display: grid; grid-template-columns: 1.15fr 1fr; gap: 64px; align-items: center; padding-block: 70px; }
+  .body { margin-top: 1.4rem; }
+  .big { width: 100%; max-width: 480px; aspect-ratio: 1 / 1.1547; object-fit: cover; justify-self: center; filter: drop-shadow(0 14px 30px rgb(59 42 26 / .18)); }
+  .local { padding-block: 20px 90px; }
+  .panel { padding: 48px; border-radius: 32px; background: linear-gradient(180deg, #fbf1da, #fdf6e6); }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 28px; }
+  .cols p + p { margin-top: 0; }
+  @media (max-width: 900px) {
+    .pair { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-block: 40px; }
+    .big { max-width: 340px; }
+    .panel { padding: 28px 22px; }
+    .cols { grid-template-columns: 1fr; gap: 14px; }
+  }
+</style>

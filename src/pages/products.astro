@@ -1,45 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHeader from '../components/PageHeader.astro';
-import Carousel from '../components/Carousel.astro';
+import Hero from '../components/Hero.astro';
 
-// Product cards. "subtitle" is the small line under the title (optional).
 const products = [
-  {
-    image: '/images/bottle.jpg',
-    alt: 'Bottle of Hive Five Apiary raw honey with our hives in the background',
-    title: 'Liquid Honey',
-    subtitle: 'Bottle',
-    description: 'Raw, unfiltered honey in a 1lb. plastic bottle. Perfect for drizzling over toast, yogurt, or tea!'
-  },
-  {
-    image: '/images/honey-jar-dipper.jpg',
-    alt: 'Glass jar of Hive Five Apiary raw honey with a wooden honey dipper',
-    title: 'Liquid Honey',
-    subtitle: 'with dipper',
-    description: 'A larger, glass jar with a convenient wooden honey dipper. Elegant and a perfect gift!'
-  },
-  {
-    image: '/images/creamed-honey.jpg',
-    alt: 'Jar of Hive Five Apiary creamed honey',
-    title: 'Creamed Honey',
-    description: 'Smooth creamed honey with a rich and thick texture. Perfect for spreading on bread!'
-  },
-  {
-    image: '/images/lip-balm.jpg',
-    alt: 'Hive Five Apiary lip balm in its tin, with an open tin beside it',
-    title: 'Lip Balm',
-    description: 'Lip Balm made with Organic Virgin Coconut Oil, Beeswax from our bees, Cocoa Butter, Extra Virgin Olive Oil, Sweet Almond Oil, Jojoba Oil, Vitamin E, Lanolin, and Flavoring Oil. It comes in a 1oz. reusable tin.'
-  }
+  { image: '/images/bottle.jpg', alt: 'Bottle of Hive Five Apiary raw honey with our hives in the background', title: 'Liquid honey', sub: 'Bottle',
+    text: 'Raw, unfiltered honey in a 1lb. plastic bottle. Perfect for drizzling over toast, yogurt, or tea!' },
+  { image: '/images/honey-jar-dipper.jpg', alt: 'Glass jar of Hive Five Apiary raw honey with a wooden honey dipper', title: 'Liquid honey', sub: 'With dipper',
+    text: 'A larger, glass jar with a convenient wooden honey dipper. Elegant and a perfect gift!' },
+  { image: '/images/creamed-honey.jpg', alt: 'Jar of Hive Five Apiary creamed honey', title: 'Creamed honey', sub: '',
+    text: 'Smooth creamed honey with a rich and thick texture. Perfect for spreading on bread!' },
+  { image: '/images/lip-balm.jpg', alt: 'Hive Five Apiary lip balm in its tin, with an open tin beside it', title: 'Lip balm', sub: '1 oz reusable tin',
+    text: 'Made with Organic Virgin Coconut Oil, Beeswax from our bees, Cocoa Butter, Extra Virgin Olive Oil, Sweet Almond Oil, Jojoba Oil, Vitamin E, Lanolin, and Flavoring Oil.' },
 ];
 
-// Photos for the carousel next to the intro text.
-const productionImages = [
-  { src: '/images/product1.jpg', alt: 'A jar of our honey in front of our colorful hives' },
-  { src: '/images/product2.jpg', alt: 'A frame of capped honey lifted from a honey super' },
-  { src: '/images/product3.jpg', alt: 'Honey frames loaded into our extractor' },
-  { src: '/images/product4.jpg', alt: 'Extracted honey running through a sieve into a bucket' },
-  { src: '/images/product5.jpg', alt: 'Stirring honey in a glass bowl to make creamed honey' }
+const steps = [
+  { image: '/images/product2.jpg', alt: 'A frame of capped honey lifted from a honey super', title: 'Pull capped frames', text: 'From the honey supers on top of each hive.' },
+  { image: '/images/product3.jpg', alt: 'Honey frames loaded into our extractor', title: 'Spin', text: 'Uncapped frames go into the extractor.' },
+  { image: '/images/product4.jpg', alt: 'Extracted honey running through a sieve into a bucket', title: 'Strain', text: 'A sieve catches chunks of wax and other particles.' },
+  { image: '/images/product5.jpg', alt: 'Stirring honey in a glass bowl to make creamed honey', title: 'Bottle or cream', text: 'Into bottles, or transformed into creamed honey.' },
 ];
 ---
 
@@ -47,136 +25,98 @@ const productionImages = [
   title="Products"
   description="Raw local honey, creamed honey and beeswax lip balm from Hive Five Apiary, a Certified North Carolina Honey Producer in Midtown Raleigh."
 >
-  <div class="relative min-h-screen overflow-x-clip bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50">
-    <!-- Honeycomb background pattern -->
-    <div class="fixed inset-0 opacity-10 pointer-events-none">
-      <div class="absolute inset-0 bg-pattern"></div>
+  <Hero
+    title="Pure local honey from our backyard to your table"
+    intro="All of our honey products come from our small backyard apiary in the North Hills (Midtown) area of Raleigh."
+    image="/images/product1.jpg"
+    position="65% 50%"
+  />
+
+  <section class="wrap goods">
+    <h2 class="section-title">What we make</h2>
+    <p class="lede">We produce limited quantities of honey and honey products based on what our bees provide each season.</p>
+    <div class="strip">
+      {products.map((p) => (
+        <article class="item">
+          <img class="hex" src={p.image} alt={p.alt} loading="lazy" decoding="async" />
+          <h3>{p.title}{p.sub && <small>{p.sub}</small>}</h3>
+          <p>{p.text}</p>
+        </article>
+      ))}
     </div>
+  </section>
 
-    <PageHeader
-      eyebrow="From our backyard"
-      title="Our Products"
-      intro="Pure local honey from our backyard to your table."
-    />
-
-    <!-- How we make it: photos + story -->
-    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-        <div class="lg:col-span-5">
-          <Carousel images={productionImages} label="Photos of how we make our honey products" aspect="1 / 1" eager />
-        </div>
-
-        <div class="lg:col-span-7 bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg ring-1 ring-amber-900/5 p-6 sm:p-8 lg:p-10 space-y-5 text-gray-700 text-lg leading-relaxed">
-          <p>
-            All of our honey products come from our small backyard apiary in the North Hills (Midtown) area of Raleigh. Honeybees are known for foraging up to 3 miles away, so our bees gather nectar from many different plant species depending on what our neighbors have growing in their yards. This creates honey with unique flavors that reflect our neighborhood's botanical diversity.
-          </p>
-          <p>
-            We take a natural approach with our own yard, avoiding lawn treatments and chemical applications. Instead, we focus on growing native plants and maintaining a year-round garden. We vermicompost most of our food waste and have chickens that help eat food scraps and compost our leaf pile—all part of our little urban homestead.
-          </p>
-          <p>
-            We collect our honey from smaller boxes on our hives called honey supers, which lets our bees keep what they've stored in the brood and deep boxes to help them survive throughout the four seasons. The cappings are scraped off from the honey, and the frames are placed into our extractor. The extractor spins the honey from our frames, and it runs down through a sieve that removes chunks of wax or other large particles. From there, the honey goes into bottles or is transformed into creamed honey.
-          </p>
-          <p>
-            We practice minimal intervention beekeeping, so any wax we collect comes from inspections where extra comb is built in the wrong place or from our extraction process when removing cappings. We use this small amount of wax in hand lotion, lip balm, and cutting board oil—nothing goes to waste in our sustainable approach to beekeeping.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Product cards -->
-    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14" aria-labelledby="products-heading">
-      <div class="text-center mb-10 sm:mb-14">
-        <h2 id="products-heading" class="text-3xl sm:text-4xl font-semibold text-amber-900">What we offer</h2>
-        <div class="mx-auto mt-4 h-1 w-16 rounded-full bg-amber-500"></div>
-      </div>
-
-      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
-        {products.map((product) => (
-          <li class="product-card group flex flex-col items-center text-center bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg ring-1 ring-amber-900/5 px-6 pt-8 pb-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-amber-400/40">
-            <div class="hex-frame">
-              <img
-                src={product.image}
-                alt={product.alt}
-                class="hex-img"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <h3 class="mt-6 text-2xl font-semibold text-amber-900 leading-tight">{product.title}</h3>
-            {product.subtitle && (
-              <p class="mt-1 text-sm font-semibold uppercase tracking-[0.15em] text-amber-600">{product.subtitle}</p>
-            )}
-            <p class="mt-3 text-gray-700 leading-relaxed">{product.description}</p>
+  <section class="process">
+    <div class="wrap">
+      <h2 class="section-title">From frame to jar</h2>
+      <p class="lede">We collect our honey from smaller boxes on our hives called honey supers, which lets our bees keep what they've stored in the brood and deep boxes to help them survive throughout the four seasons.</p>
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li class="step">
+            <span class="n" aria-hidden="true">{i + 1}</span>
+            <div class="photo round"><img src={s.image} alt={s.alt} loading="lazy" decoding="async" /></div>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
           </li>
         ))}
-      </ul>
-    </section>
+      </ol>
+      <p class="lede wax">We practice minimal intervention beekeeping, so any wax we collect comes from inspections where extra comb is built in the wrong place or from our extraction process when removing cappings. We use this small amount of wax in hand lotion, lip balm, and cutting board oil—nothing goes to waste in our sustainable approach to beekeeping.</p>
+    </div>
+  </section>
 
-    <!-- Certified NC Honey + contact -->
-    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 sm:pb-20">
-      <div class="max-w-3xl mx-auto bg-amber-100/80 backdrop-blur-sm rounded-3xl shadow-lg ring-1 ring-amber-900/5 p-6 sm:p-10 text-center">
-        <h2 class="text-2xl sm:text-3xl font-semibold text-amber-900 mb-4">Certified North Carolina Honey</h2>
-        <p class="text-gray-700 leading-relaxed mb-6">
-          Our honey is part of the Certified Honey Producer program through the North Carolina State Beekeepers Association. This certification ensures our honey meets strict quality standards and is produced right here in North Carolina.
-        </p>
-        <a
-          href="https://www.ncbeekeepers.org/programs/certified-honey-producer"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block rounded-2xl"
-        >
-          <img
-            src="/images/Certified-Honey-Label.png"
-            alt="NC Certified Honey Producer"
-            class="h-36 sm:h-40 w-auto mx-auto hover:scale-105 transition-transform duration-300"
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-
-        <div class="mx-auto my-8 h-px w-24 bg-amber-300"></div>
-
-        <h3 class="text-xl sm:text-2xl font-semibold text-amber-900 mb-3">Interested in Our Products?</h3>
-        <p class="text-gray-700 leading-relaxed mb-6 max-w-xl mx-auto">
-          We produce limited quantities of honey and honey products based on what our bees provide each season. If you'd like to learn more about availability or place an order, please get in touch!
-        </p>
-        <a
-          href="/contact"
-          class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 shadow-lg shadow-amber-600/20"
-        >
-          Contact Us
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" /></svg>
-        </a>
+  <div class="wrap">
+    <div class="order">
+      <div>
+        <h2>Interested in our products?</h2>
+        <p>If you'd like to learn more about availability or place an order, please get in touch!</p>
       </div>
-    </section>
-  </div>
+      <a class="btn btn-primary" href="/contact">Contact us</a>
+    </div>
 
-  <style>
-    /* Hexagon photo with a honey-coloured edge. */
-    .hex-frame {
-      --hex: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-      position: relative;
-      width: min(100%, 15rem);
-      aspect-ratio: 0.866;
-      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
-      clip-path: var(--hex);
-      filter: drop-shadow(0 10px 18px rgb(120 53 15 / 0.18));
-      transition: background 0.35s ease, transform 0.35s ease;
-    }
-    .hex-img {
-      position: absolute;
-      inset: 4px;
-      width: calc(100% - 8px);
-      height: calc(100% - 8px);
-      object-fit: cover;
-      clip-path: var(--hex);
-      transition: transform 0.5s ease;
-    }
-    .product-card:hover .hex-frame {
-      background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
-    }
-    .product-card:hover .hex-img {
-      transform: scale(1.04);
-    }
-  </style>
+    <div class="note">
+      <a href="https://www.ncbeekeepers.org/programs/certified-honey-producer" target="_blank" rel="noopener noreferrer">
+        <img src="/images/Certified-Honey-Label.png" alt="NC Certified Honey Producer" loading="lazy" />
+      </a>
+      <p>Our honey is part of the Certified Honey Producer program through the North Carolina State Beekeepers Association.</p>
+    </div>
+  </div>
 </BaseLayout>
+
+<style>
+  .goods { padding-block: 60px 40px; }
+  .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; margin-top: 46px; align-items: start; }
+  .item:nth-child(even) { margin-top: 90px; }
+  .item img { width: 100%; aspect-ratio: 1 / 1.1547; object-fit: cover; display: block; }
+  .item h3 { margin-top: 20px; font-size: 1.6rem; line-height: 1.15; }
+  .item h3 small { display: block; font: 500 .9rem var(--font-sans); color: var(--color-amber); margin-top: 4px; }
+  .item p { color: var(--color-bark-2); font-size: 1rem; margin-top: 8px; }
+
+  .process { padding-block: 90px; margin-top: 40px; background: linear-gradient(180deg, var(--color-light), #fbf1da 30%, #fbf1da 70%, var(--color-light)); }
+  .steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin: 46px 0 0; padding: 0; list-style: none; }
+  .steps::before { content: ""; position: absolute; left: 8%; right: 8%; top: 118px; border-top: 2px dotted rgb(184 103 13 / .55); }
+  .step { position: relative; text-align: center; }
+  .step .round { width: 236px; aspect-ratio: 1; margin: 0 auto; border-radius: 50%; border: 6px solid var(--color-light); }
+  .step .n { position: absolute; top: 4px; left: calc(50% - 128px); z-index: 1; width: 40px; height: 46px; clip-path: var(--hex); background: var(--color-honey); display: grid; place-items: center; font: 600 1.1rem var(--font-display); color: #2a1c0e; }
+  .step h3 { margin-top: 20px; font-size: 1.4rem; }
+  .step p { color: var(--color-bark-2); font-size: 1rem; margin-top: 6px; }
+  .wax { margin-top: 50px; }
+
+  .order { margin-block: 70px 50px; display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: center; padding: 44px 48px; border-radius: 32px; background: #fff; box-shadow: 0 14px 34px rgb(59 42 26 / .1); }
+  .order h2 { font-size: 2.1rem; }
+  .order p { color: var(--color-bark-2); margin-top: 8px; max-width: 40em; }
+
+  .note { padding: 10px 0 70px; display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; }
+  .note img { width: 110px; transition: transform .3s; }
+  .note a:hover img { transform: scale(1.05); }
+  .note p { font: italic 1.5rem/1.35 var(--font-display); color: var(--color-bark-2); max-width: 36em; }
+
+  @media (max-width: 900px) {
+    .strip { grid-template-columns: 1fr 1fr; gap: 18px; }
+    .item:nth-child(even) { margin-top: 60px; }
+    .item h3 { font-size: 1.3rem; }
+    .steps { grid-template-columns: 1fr 1fr; } .steps::before { display: none; }
+    .step .round { width: 150px; } .step .n { left: 4px; }
+    .order { grid-template-columns: 1fr; padding: 30px 24px; }
+    .note { grid-template-columns: 1fr; } .note p { font-size: 1.25rem; }
+  }
+</style>
