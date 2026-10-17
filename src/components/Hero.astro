@@ -1,0 +1,44 @@
+---
+// Sunlit photo hero: the photo sits on the right and fades into the page on the
+// left and bottom, with the page title on top of the faded side.
+interface Props {
+  title: string;
+  intro?: string;
+  image: string;
+  position?: string;   // CSS background-position for the photo
+  tall?: boolean;      // the home page uses a taller hero
+}
+const { title, intro, image, position = '60% 45%', tall = false } = Astro.props;
+---
+<header class:list={['hero', { tall }]}>
+  <div class="hero-photo" style={`background-image:url(${image});background-position:${position}`}></div>
+  <div class="hero-light"></div>
+  <div class="hero-copy">
+    <h1>{title}</h1>
+    {intro && <p>{intro}</p>}
+    <slot />
+  </div>
+</header>
+
+<style>
+  .hero { position: relative; min-height: 440px; overflow: hidden; display: flex; align-items: center; }
+  .hero.tall { min-height: 760px; }
+  .hero-photo { position: absolute; top: 0; bottom: 0; right: 0; width: min(100%, 1500px); background-size: cover; filter: saturate(1.12) brightness(1.06);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%); mask-image: linear-gradient(90deg, transparent 0%, #000 30%); }
+  .hero-light { position: absolute; inset: 0; background:
+      radial-gradient(55% 60% at 85% 18%, rgb(255 226 140 / .5), transparent 70%),
+      linear-gradient(90deg, var(--color-light) 0%, rgb(255 250 240 / .95) 30%, rgb(255 250 240 / .55) 46%, rgb(255 250 240 / 0) 64%),
+      linear-gradient(0deg, var(--color-light) 0%, rgb(255 250 240 / 0) 30%); }
+  .hero-copy { position: relative; z-index: 2; padding: 130px 56px 60px; max-width: 760px; }
+  .hero h1 { font-size: clamp(2.6rem, 5vw, 4.3rem); line-height: 1.05; letter-spacing: -0.02em; }
+  .hero p { margin-top: 1.4rem; font-size: 1.3rem; max-width: 28em; color: var(--color-bark-2); }
+  .hero-copy :global(.ctas) { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 2rem; }
+  @media (max-width: 700px) {
+    .hero, .hero.tall { min-height: 620px; align-items: flex-end; }
+    .hero:not(.tall) { min-height: 380px; }
+    .hero-photo { width: 100%; -webkit-mask-image: none; mask-image: none; }
+    .hero-light { background: linear-gradient(0deg, var(--color-light) 0%, var(--color-light) 40%, rgb(255 250 240 / .92) 58%, rgb(255 250 240 / .25) 82%, rgb(255 250 240 / 0) 100%); }
+    .hero-copy { padding: 0 20px 36px; }
+    .hero p { font-size: 1.1rem; }
+  }
+</style>

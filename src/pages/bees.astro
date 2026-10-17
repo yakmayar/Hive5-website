@@ -1,201 +1,122 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHeader from '../components/PageHeader.astro';
-import Carousel from '../components/Carousel.astro';
+import Hero from '../components/Hero.astro';
 import VideoCard from '../components/VideoCard.astro';
 import BeeFacts from '../components/BeeFacts.astro';
 
-// All photo carousels on this page share one frame shape so the sections line up.
-const photoAspect = '4 / 3';
-
+// Small honeycomb photos tucked against each video's corner.
 const colonyPhotos = [
-  { src: '/images/our-colonies.JPG', alt: 'Painted hive boxes with feeder jars at their entrances' },
-  { src: '/images/our-colonies2.jpg', alt: 'Our colorful hives on stands in the backyard garden' },
+  { src: '/images/our-colonies.JPG', alt: 'Painted hive boxes with feeder jars at their entrances', x: 121, y: 0 },
+  { src: '/images/hex3.jpg', alt: 'Bees on a frame of capped honey and brood', x: 247, y: 108 },
 ];
-
 const queenPhotos = [
-  { src: '/images/our-queens1.jpg', alt: 'A queen marked with a red dot among her workers on the brood comb' },
-  { src: '/images/our-queens2.jpg', alt: 'A long-bodied queen marked with a red dot, surrounded by worker bees' },
-  { src: '/images/our-queens3.jpg', alt: 'A queen marked with a yellow dot on a frame of capped brood' },
-  { src: '/images/our-queens4.jpg', alt: 'A queen marked with a blue dot among her workers' },
+  { src: '/images/our-queens1.jpg', alt: 'A queen marked with a red dot among her workers on the brood comb', x: 0, y: 108 },
+  { src: '/images/our-queens2.jpg', alt: 'A long-bodied queen marked with a red dot, surrounded by worker bees', x: 126, y: 0 },
+  { src: '/images/our-queens4.jpg', alt: 'A queen marked with a blue dot among her workers', x: 252, y: 108 },
 ];
-
 const carePhotos = [
-  { src: '/images/care1.jpg', alt: 'Open hive box with bees covering the tops of the frames' },
-  { src: '/images/care2.jpg', alt: 'A frame of capped brood ringed by bees, lifted out during an inspection' },
-  { src: '/images/care3.jpg', alt: 'Worker bees walking across a frame of empty comb' },
+  { src: '/images/care1.jpg', alt: 'Open hive box with bees covering the tops of the frames', x: 121, y: 0 },
+  { src: '/images/care2.jpg', alt: 'A frame of capped brood ringed by bees, lifted out during an inspection', x: 247, y: 108 },
 ];
-
-const panel = 'rounded-3xl bg-white/60 p-6 shadow-lg ring-1 ring-amber-900/5 backdrop-blur-sm sm:p-10';
-const h2 = 'text-3xl font-semibold leading-tight text-amber-900 sm:text-4xl';
-const body = 'space-y-4 text-lg leading-relaxed text-gray-700';
-const chip = 'inline-flex items-center gap-2 rounded-full bg-amber-100/80 px-3.5 py-1.5 text-sm font-medium text-amber-900 ring-1 ring-amber-900/10';
 ---
 
 <BaseLayout
   title="Our Bees"
   description="Meet the Italian and Caucasian honey bee colonies at Hive Five Apiary in Midtown Raleigh, how our queens keep each hive thriving, and how we care for our bees year-round."
 >
-  <div class="relative min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50">
-    <!-- Honeycomb background pattern -->
-    <div class="pointer-events-none fixed inset-0 opacity-10">
-      <div class="absolute inset-0 bg-pattern"></div>
+  <Hero
+    title="Our bees"
+    image="/images/our-queens3.jpg"
+    position="70% 40%"
+  />
+
+  <section id="colonies" class="story wrap">
+    <div class="prose">
+      <h2 class="section-title">Meet our colonies</h2>
+      <ul class="chips"><li>Italian &amp; Caucasian</li><li>30,000–60,000 bees each in summer</li></ul>
+      <div class="body">
+        <p>Our apiary is home to Italian honeybees (Apis mellifera ligustica), known for their gentle temperament and excellent honey production. These golden-colored bees are perfect for urban beekeeping and are well-suited to our North Carolina climate.</p>
+        <p>We also maintain colonies of Caucasian honeybees (Apis mellifera caucasica), which are prized for their extremely gentle nature and ability to work in cooler, wetter conditions. Originating from the Caucasus Mountains, these darker bees are excellent foragers and produce a distinctive, flavorful honey. They're known for using more propolis than other subspecies, which helps protect the hive.</p>
+        <p>Each of our hives has its own personality! We maintain several colonies, each led by a laying queen who can produce up to 2,000 eggs per day during peak season. Our colonies range from 30,000 to 60,000 bees during the busy summer months.</p>
+      </div>
     </div>
-
-    <PageHeader
-      eyebrow="Hive Five Apiary"
-      title="Our Bees"
-      intro="Meet the colonies, the queens, and the care behind every hive in our Midtown Raleigh backyard."
-    />
-
-    <div class="relative mx-auto max-w-7xl space-y-10 px-4 py-8 sm:space-y-12 sm:px-6 lg:px-8">
-      <!-- Meet Our Colonies -->
-      <section id="colonies" class:list={[panel, 'trio']} aria-labelledby="colonies-heading">
-        <VideoCard src="/images/Worker-orientation-flights.mp4" poster="/images/Worker-orientation-flights-poster.jpg" caption="Worker bee orientation flights" label="Worker bees hovering in front of the hive on orientation flights" class="trio-media video-11" />
-
-        <div class="trio-text">
-          <h2 id="colonies-heading" class={h2}>Meet Our Colonies</h2>
-          <div class="mt-4 h-1 w-14 rounded-full bg-amber-500"></div>
-          <ul class="mt-6 flex flex-wrap gap-2" aria-label="Colony highlights">
-            <li class={chip}><span class="hex" aria-hidden="true"></span>Up to 2,000 eggs a day</li>
-            <li class={chip}><span class="hex" aria-hidden="true"></span>30,000–60,000 bees per colony</li>
-          </ul>
-          <div class="mt-6 space-y-3">
-            <article class="rounded-2xl bg-white/70 p-5 ring-1 ring-amber-900/10">
-              <h3 class="text-xl font-semibold text-amber-900">Italian honeybees <span class="ml-1 text-sm font-normal italic text-amber-700">Apis mellifera ligustica</span></h3>
-              <p class="mt-2 leading-relaxed text-gray-700">
-                Our apiary is home to Italian honeybees (Apis mellifera ligustica), known for their gentle temperament and excellent honey production. These golden-colored bees are perfect for urban beekeeping and are well-suited to our North Carolina climate.
-              </p>
-            </article>
-            <article class="rounded-2xl bg-white/70 p-5 ring-1 ring-amber-900/10">
-              <h3 class="text-xl font-semibold text-amber-900">Caucasian honeybees <span class="ml-1 text-sm font-normal italic text-amber-700">Apis mellifera caucasica</span></h3>
-              <p class="mt-2 leading-relaxed text-gray-700">
-                We also maintain colonies of Caucasian honeybees (Apis mellifera caucasica), which are prized for their extremely gentle nature and ability to work in cooler, wetter conditions. Originating from the Caucasus Mountains, these darker bees are excellent foragers and produce a distinctive, flavorful honey. They're known for using more propolis than other subspecies, which helps protect the hive.
-              </p>
-            </article>
-          </div>
-          <p class="mt-5 text-lg leading-relaxed text-gray-700">
-            Each of our hives has its own personality! We maintain several colonies, each led by a laying queen who can produce up to 2,000 eggs per day during peak season. Our colonies range from 30,000 to 60,000 bees during the busy summer months.
-          </p>
-        </div>
-
-        <Carousel images={colonyPhotos} label="Photos of our colonies" aspect={photoAspect} class="trio-media" />
-      </section>
-
-      <!-- Our Queens -->
-      <section id="queens" class:list={[panel, 'trio', 'flip']} aria-labelledby="queens-heading">
-        <VideoCard src="/images/laying-queen.mp4" poster="/images/laying-queen-poster.jpg" caption="Queen laying eggs" label="Our queen laying eggs in the comb, surrounded by worker bees" class="trio-media video-11" />
-
-        <div class="trio-text">
-          <h2 id="queens-heading" class={h2}>Our Queens</h2>
-          <div class="mt-4 h-1 w-14 rounded-full bg-amber-500"></div>
-          <ul class="mt-6 flex flex-wrap gap-2" aria-label="Queen highlights">
-            <li class={chip}><span class="hex" aria-hidden="true"></span>Typically one queen per hive</li>
-            <li class={chip}><span class="hex" aria-hidden="true"></span>Queens live 3–5 years</li>
-          </ul>
-          <div class:list={['mt-6', body]}>
-            <p>
-              The queen bee is the heart of every hive. She's the only bee in the colony that lays fertilized eggs, and her pheromones help maintain harmony among thousands of worker bees. Remarkably, there is typically only one queen per hive, and she is visibly different from her workers—noticeably longer and more slender, with a distinctive elongated abdomen.
-            </p>
-            <p>
-              Queen bees are created through a fascinating process involving royal jelly. When a colony needs a new queen, worker bees select young larvae and feed them exclusively with royal jelly—a protein-rich secretion produced by nurse bees. This special diet triggers the development of a larva into a queen rather than a worker bee. Royal jelly is so nutritionally powerful that it causes the queen to develop fully functional reproductive organs and grow nearly twice the size of a worker bee.
-            </p>
-            <p>
-              Our queens are carefully selected for their gentle genetics and strong egg-laying patterns. We work with local queen breeders to ensure our colonies have the best genetics suited for our region.
-            </p>
-            <p>
-              A healthy queen can live 3–5 years, though we monitor each queen's performance and replace her when necessary to maintain colony health.
-            </p>
-          </div>
-        </div>
-
-        <Carousel images={queenPhotos} label="Photos of our queens" aspect={photoAspect} class="trio-media" />
-      </section>
-
-      <!-- How We Care for Our Bees -->
-      <section id="care" class:list={[panel, 'trio']} aria-labelledby="care-heading">
-        <VideoCard src="/images/inspection.mp4" poster="/images/inspection-poster.jpg" caption="Inspecting frames" label="Lifting and checking frames during a hive inspection" class="trio-media video-169" />
-
-        <div class="trio-text">
-          <h2 id="care-heading" class={h2}>How We Care for Our Bees</h2>
-          <div class="mt-4 h-1 w-14 rounded-full bg-amber-500"></div>
-          <ul class="mt-6 flex flex-wrap gap-2" aria-label="Care highlights">
-            <li class={chip}><span class="hex" aria-hidden="true"></span>Inspections every 7–10 days</li>
-            <li class={chip}><span class="hex" aria-hidden="true"></span>Integrated pest management</li>
-          </ul>
-          <div class:list={['mt-6', body]}>
-            <p>
-              We conduct regular hive inspections every 7–10 days during active season, checking for signs of disease, ensuring the queen is laying, and monitoring food stores. We practice integrated pest management, using the least invasive methods to keep our bees healthy.
-            </p>
-            <p>
-              Our bees have access to natural forage year-round from gardens, trees, and flowering plants throughout Midtown Raleigh. We supplement with sugar syrup only when necessary during times of dearth, and we never harvest more honey than the bees can spare.
-            </p>
-            <p>
-              During winter, we ensure our colonies have adequate food stores and proper insulation. We minimize inspections in cold weather to help the bees maintain their cluster temperature and conserve energy.
-            </p>
-          </div>
-        </div>
-
-        <Carousel images={carePhotos} label="Photos of how we care for our bees" aspect={photoAspect} class="trio-media" />
-      </section>
+    <div class="media">
+      <VideoCard src="/images/Worker-orientation-flights.mp4" poster="/images/Worker-orientation-flights-poster.jpg" caption="Worker bee orientation flights" label="Worker bees hovering in front of the hive on orientation flights" class="vid square" />
+      <div class="tuck">
+        {colonyPhotos.map((p) => (<div class="ring" style={`left:${p.x}px;top:${p.y}px`}><img src={p.src} alt={p.alt} loading="lazy" decoding="async" /></div>))}
+      </div>
     </div>
+  </section>
 
-    <BeeFacts />
-  </div>
+  <section id="queens" class="story wrap flip">
+    <div class="prose">
+      <h2 class="section-title">Our queens</h2>
+      <ul class="chips"><li>One queen per hive</li><li>Up to 2,000 eggs a day</li><li>Lives 3–5 years</li></ul>
+      <div class="body">
+        <p>The queen bee is the heart of every hive. She's the only bee in the colony that lays fertilized eggs, and her pheromones help maintain harmony among thousands of worker bees. Remarkably, there is typically only one queen per hive, and she is visibly different from her workers. She's noticeably longer and more slender, with a distinctive elongated abdomen.</p>
+        <p>Queen bees are created through a fascinating process involving royal jelly. When a colony needs a new queen, worker bees select young larvae and feed them exclusively with royal jelly, a protein-rich secretion produced by nurse bees. This special diet triggers the development of a larva into a queen rather than a worker bee. Royal jelly is so nutritionally powerful that it causes the queen to develop fully functional reproductive organs and grow nearly twice the size of a worker bee.</p>
+        <p>Our queens are carefully selected for their gentle genetics and strong egg-laying patterns. We work with local queen breeders to ensure our colonies have the best genetics suited for our region.</p>
+        <p>A healthy queen can live 3–5 years, though we monitor each queen's performance and replace her when necessary to maintain colony health.</p>
+      </div>
+    </div>
+    <div class="media">
+      <VideoCard src="/images/laying-queen.mp4" poster="/images/laying-queen-poster.jpg" caption="Queen laying eggs" label="Our queen laying eggs in the comb, surrounded by worker bees" class="vid square" />
+      <div class="tuck">
+        {queenPhotos.map((p) => (<div class="ring" style={`left:${p.x}px;top:${p.y}px`}><img src={p.src} alt={p.alt} loading="lazy" decoding="async" /></div>))}
+      </div>
+    </div>
+  </section>
 
-  <style>
-    /* Small hexagon bullet for the highlight chips */
-    .hex {
-      width: 0.6rem;
-      height: 0.7rem;
-      flex: none;
-      background: #f59e0b;
-      clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-    }
+  <section id="care" class="story wrap">
+    <div class="prose">
+      <h2 class="section-title">How we care for our bees</h2>
+      <ul class="chips"><li>Inspections every 7–10 days</li><li>Integrated pest management</li></ul>
+      <div class="body">
+        <p>We conduct regular hive inspections every 7–10 days during active season, checking for signs of disease, ensuring the queen is laying, and monitoring food stores. We practice integrated pest management, using the least invasive methods to keep our bees healthy.</p>
+        <p>Our bees have access to natural forage year-round from gardens, trees, and flowering plants throughout Midtown Raleigh. We supplement with sugar syrup only when necessary during times of dearth, and we never harvest more honey than the bees can spare.</p>
+        <p>During winter, we ensure our colonies have adequate food stores and proper insulation. We minimize inspections in cold weather to help the bees maintain their cluster temperature and conserve energy.</p>
+      </div>
+    </div>
+    <div class="media wide">
+      <VideoCard src="/images/inspection.mp4" poster="/images/inspection-poster.jpg" caption="Inspecting frames" label="Lifting and checking frames during a hive inspection" class="vid wide" />
+      <div class="tuck">
+        {carePhotos.map((p) => (<div class="ring" style={`left:${p.x}px;top:${p.y}px`}><img src={p.src} alt={p.alt} loading="lazy" decoding="async" /></div>))}
+      </div>
+    </div>
+  </section>
 
-    /* Media beside text. On phones the text comes first, then the video,
-       then the photos. */
-    .trio {
-      display: grid;
-      gap: 1.75rem;
-    }
-    .trio-text {
-      order: -1;
-    }
-    @media (min-width: 640px) and (max-width: 1023px) {
-      /* Tablets: text full width, video and photos side by side below */
-      .trio {
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-      }
-      .trio-text {
-        grid-column: 1 / -1;
-      }
-    }
-
-    /* Reserve each video's shape before it loads (videos load lazily). */
-    .trio :global(.video-169 video) {
-      aspect-ratio: 16 / 9;
-    }
-    .trio :global(.video-11 video) {
-      aspect-ratio: 1 / 1;
-    }
-    @media (min-width: 1024px) {
-      /* Video above photos on one side, text on the other; .flip swaps sides. */
-      .trio {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-        grid-template-areas: "video text" "photos text";
-        column-gap: 3rem;
-        row-gap: 1.25rem;
-        align-items: start;
-      }
-      .trio.flip {
-        grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-        grid-template-areas: "text video" "text photos";
-      }
-      .trio > :first-child { grid-area: video; }
-      .trio > .trio-text { grid-area: text; align-self: center; order: 0; }
-      .trio > :last-child { grid-area: photos; }
-    }
-  </style>
+  <div class="facts-space"><BeeFacts /></div>
 </BaseLayout>
+
+<style>
+  .story { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding-block: 70px; }
+  .story + .story { padding-top: 30px; }
+  .flip > .prose { order: 2; }
+  .body { margin-top: 1.4rem; }
+
+  .media { position: relative; width: 100%; max-width: 560px; justify-self: center; padding-bottom: 150px; }
+  .media :global(.vid) { width: 82%; }
+  .media.wide :global(.vid) { width: 92%; }
+  .flip .media :global(.vid) { margin-left: auto; }
+  .media :global(.vid video) { width: 100%; max-height: none !important; object-fit: cover; }
+  .media :global(.square video) { aspect-ratio: 1 / 1; }
+  .media :global(.wide video) { aspect-ratio: 16 / 10; }
+  /* the pause button moves to the top corner so the tucked photos don't cover it */
+  .media :global([data-toggle]) { top: 12px; bottom: auto; }
+
+  .tuck { position: absolute; right: -90px; bottom: 0; width: 430px; height: 315px; pointer-events: none; }
+  .flip .tuck { right: auto; left: -90px; }
+  .ring { position: absolute; width: 176px; height: 203px; clip-path: var(--hex); background: var(--color-light); pointer-events: auto; }
+  .ring img { position: absolute; inset: 7px; width: calc(100% - 14px); height: calc(100% - 14px); object-fit: cover; clip-path: var(--hex); }
+
+  .facts-space { padding-top: 30px; }
+
+  @media (max-width: 900px) {
+    .story { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 40px; }
+    .flip > .prose { order: 0; }
+    .media { padding-bottom: 90px; }
+    .tuck { right: 0; transform: scale(.6); transform-origin: bottom right; }
+    .flip .tuck { left: 0; }
+    .flip .tuck { transform-origin: bottom left; }
+  }
+</style>

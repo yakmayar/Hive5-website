@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHeader from '../components/PageHeader.astro';
+import Hero from '../components/Hero.astro';
 ---
 
 <BaseLayout
@@ -10,22 +10,19 @@ import PageHeader from '../components/PageHeader.astro';
   <!-- Load Cloudflare Turnstile Script -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   
-  <div class="relative min-h-screen overflow-x-clip bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50">
-    <!-- Honeycomb background pattern -->
-    <div class="fixed inset-0 opacity-10 pointer-events-none">
-      <div class="absolute inset-0 bg-pattern"></div>
-    </div>
+  <div class="relative overflow-x-clip">
 
-    <PageHeader
-      eyebrow="Say hello"
-      title="Contact Us"
+    <Hero
+      title="Contact us"
       intro="If you have questions about our honey, want to learn more about beekeeping, or would like to purchase a product, we would love to hear from you."
+      image="/images/hex5.jpg"
+      position="60% 35%"
     />
 
     <!-- Contact Form Section -->
-    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 sm:pb-20">
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-20 sm:pb-24">
       <div class="grid gap-8 lg:grid-cols-12 items-start">
-        <div class="lg:col-span-8 bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg ring-1 ring-amber-900/5 p-6 sm:p-10">
+        <div class="lg:col-span-8 bg-white rounded-[2rem] shadow-[0_14px_34px_rgb(59_42_26/0.1)] p-6 sm:p-10">
           <p class="text-gray-700 text-lg mb-8">
             Please fill out the form and we typically respond in less than 24 hours.
           </p>
@@ -148,8 +145,8 @@ import PageHeader from '../components/PageHeader.astro';
         </div>
 
         <!-- Side panel -->
-        <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
-          <div class="bg-amber-100/80 backdrop-blur-sm rounded-3xl shadow-lg ring-1 ring-amber-900/5 p-6 sm:p-8">
+        <aside class="lg:col-span-4  space-y-6">
+          <div class="bg-[#fbf1da] rounded-[2rem] p-6 sm:p-8">
             <div class="flex items-start gap-4">
               <span class="hex-icon" aria-hidden="true">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" /></svg>

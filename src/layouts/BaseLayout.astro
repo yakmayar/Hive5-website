@@ -12,14 +12,14 @@ interface Props {
 
 const {
   title,
-  description = 'Hive Five Apiary is a small backyard apiary in Midtown Raleigh, North Carolina, producing raw local honey, creamed honey and beeswax goods.',
+  description = 'Hive Five Apiary is a small backyard apiary in Midtown Raleigh, North Carolina, run by hobby beekeepers since 2018.',
   image = '/images/logo.png',
 } = Astro.props;
 
 const site = Astro.site ?? new URL('https://hive5apiary.us');
 const canonical = new URL(Astro.url.pathname, site);
 const ogImage = new URL(image, site);
-const fullTitle = title === 'Home' ? 'Hive Five Apiary | Local Honey from Midtown Raleigh' : `${title} | Hive Five Apiary`;
+const fullTitle = title === 'Home' ? 'Hive Five Apiary | Backyard Beekeeping in Midtown Raleigh' : `${title} | Hive Five Apiary`;
 
 const links = [
   { href: '/', label: 'Home' },
@@ -54,97 +54,76 @@ const year = new Date().getFullYear();
   <meta property="og:image" content={ogImage}>
   <meta name="twitter:card" content="summary">
 </head>
-<body class="site bg-amber-50 text-gray-900 font-sans">
+<body class="site font-sans">
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-amber-400 focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-full">Skip to content</a>
 
-  <nav class="bg-gray-900 shadow-md sticky top-0 z-50" aria-label="Main">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-20">
-        <a href="/" class="flex items-center gap-3">
-          <span class="grid place-items-center w-11 h-11 rounded-full bg-amber-50 ring-2 ring-amber-400/70 shadow-sm">
-            <BeeMark class="w-8 h-8" />
-          </span>
-          <span class="font-display text-xl font-semibold text-amber-400 tracking-tight">Hive Five Apiary</span>
-        </a>
-        <div class="hidden md:flex items-center gap-1">
-          {links.map((l) => (
-            <a
-              href={l.href}
-              aria-current={isCurrent(l.href) ? 'page' : undefined}
-              class:list={[
-                'px-4 py-2 rounded-full text-[0.95rem] transition-colors',
-                isCurrent(l.href) ? 'bg-amber-400/15 text-amber-300' : 'text-gray-300 hover:text-amber-300',
-              ]}
-            >{l.label}</a>
-          ))}
-        </div>
-        <button id="mobile-menu-btn" class="md:hidden text-gray-300 p-2 -mr-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-700">
-      <div class="px-4 py-3 space-y-1">
+  <header class="topbar">
+    <a href="/" class="brand">
+      <BeeMark class="brand-bee" />
+      <span>Hive Five Apiary</span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="menu">
         {links.map((l) => (
-          <a
-            href={l.href}
-            aria-current={isCurrent(l.href) ? 'page' : undefined}
-            class:list={['block px-3 py-2 rounded-lg', isCurrent(l.href) ? 'bg-amber-400/15 text-amber-300' : 'text-gray-300 hover:text-amber-300']}
-          >{l.label}</a>
+          <li><a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a></li>
         ))}
-      </div>
-    </div>
-  </nav>
+      </ul>
+      <button id="mobile-menu-btn" class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+      </button>
+      <ul id="mobile-menu" class="mobile-menu" hidden>
+        {links.map((l) => (
+          <li><a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </header>
 
   <main id="main">
     <slot />
   </main>
 
-  <footer class="bg-gray-900 text-gray-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid gap-10 md:grid-cols-3">
-      <div>
-        <a href="/" class="flex items-center gap-3 mb-4">
-          <span class="grid place-items-center w-11 h-11 rounded-full bg-amber-50 ring-2 ring-amber-400/70">
-            <BeeMark class="w-8 h-8" />
-          </span>
-          <span class="font-display text-xl font-semibold text-amber-400">Hive Five Apiary</span>
-        </a>
-        <p class="text-sm leading-relaxed text-gray-400 max-w-xs">
-          Backyard beekeeping and raw local honey from Midtown Raleigh, North Carolina.
-        </p>
-      </div>
-
-      <div>
-        <h2 class="font-sans text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">Explore</h2>
-        <ul class="space-y-2 text-sm">
-          {links.map((l) => (
-            <li><a href={l.href} class="hover:text-amber-300 transition-colors">{l.label}</a></li>
-          ))}
-        </ul>
-      </div>
-
-      <div>
-        <h2 class="font-sans text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">Get in touch</h2>
-        <ul class="space-y-2 text-sm">
-          <li>Midtown Raleigh, NC</li>
-          <li><a href="mailto:hive5apiary@gmail.com" class="hover:text-amber-300 transition-colors">hive5apiary@gmail.com</a></li>
-          <li><a href="/contact" class="hover:text-amber-300 transition-colors">Send us a message</a></li>
-          <li class="pt-2 text-gray-400">NC Certified Honey Producer</li>
-        </ul>
-      </div>
-    </div>
-    <div class="border-t border-white/10">
-      <p class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-xs text-gray-500">&copy; {year} Hive Five Apiary. All rights reserved.</p>
+  <footer class="site-footer">
+    <div class="legal">
+      <span>&copy; {year} Hive Five Apiary. All rights reserved.</span>
+      <span>Midtown Raleigh, NC · <a href="mailto:hive5apiary@gmail.com">hive5apiary@gmail.com</a></span>
     </div>
   </footer>
+
+  <style>
+    .topbar { position: absolute; inset: 0 0 auto; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 56px; }
+    .brand { display: flex; align-items: center; gap: 14px; font: 600 2rem/1 var(--font-display); color: var(--color-bark); text-decoration: none; }
+    .brand :global(.brand-bee) { width: 64px; height: 64px; }
+    .menu { display: flex; gap: 32px; list-style: none; margin: 0; padding: 15px 30px; font-size: 1.06rem; background: rgb(255 250 240 / .85); backdrop-filter: blur(8px); border-radius: 999px; box-shadow: 0 6px 20px rgb(59 42 26 / .12); }
+    .menu a, .mobile-menu a { color: var(--color-bark); text-decoration: none; opacity: .8; }
+    .menu a:hover { opacity: 1; }
+    .menu a[aria-current='page'] { opacity: 1; text-decoration: underline; text-decoration-color: var(--color-slate); text-decoration-thickness: 2px; text-underline-offset: 7px; }
+    .menu-btn { display: none; width: 48px; height: 48px; border-radius: 999px; place-items: center; background: rgb(255 250 240 / .9); color: var(--color-bark); box-shadow: 0 4px 14px rgb(59 42 26 / .12); }
+    .menu-btn svg { width: 24px; height: 24px; }
+    .mobile-menu { position: absolute; right: 20px; top: 84px; margin: 0; padding: 10px; list-style: none; background: var(--color-light); border-radius: 20px; box-shadow: 0 14px 34px rgb(59 42 26 / .18); min-width: 200px; }
+    .mobile-menu a { display: block; padding: 10px 14px; border-radius: 12px; opacity: 1; }
+    .mobile-menu a[aria-current='page'] { background: #fbefd2; }
+    .site-footer { background: var(--color-slate); color: #9ca3af; padding: 0 56px 26px; font-size: .9rem; }
+    .site-footer .legal { display: flex; justify-content: space-between; gap: 20px; padding-top: 18px; border-top: 1px solid rgb(255 255 255 / .12); }
+    .site-footer a { color: #d1d5db; text-decoration: none; }
+    .site-footer a:hover { color: #fbbf24; }
+    @media (max-width: 860px) {
+      .topbar { padding: 16px 20px; }
+      .brand { font-size: 1.45rem; background: rgb(255 250 240 / .9); padding: 6px 16px 6px 8px; border-radius: 999px; box-shadow: 0 4px 14px rgb(59 42 26 / .12); }
+      .brand :global(.brand-bee) { width: 44px; height: 44px; }
+      .menu { display: none; }
+      .menu-btn { display: grid; }
+      .site-footer { padding: 0 20px 22px; }
+      .site-footer .legal { flex-direction: column; gap: 4px; }
+    }
+  </style>
 
   <script>
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     btn?.addEventListener('click', () => {
-      const open = menu?.classList.toggle('hidden') === false;
+      const open = menu?.hasAttribute('hidden') ?? false;
+      menu?.toggleAttribute('hidden', !open);
       btn.setAttribute('aria-expanded', String(open));
       btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
